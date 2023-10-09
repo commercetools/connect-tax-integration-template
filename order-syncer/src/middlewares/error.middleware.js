@@ -9,16 +9,16 @@ import CustomError from '../errors/custom.error.js';
  * @returns
  */
 export const errorMiddleware = (error, _req, res, _next) => {
-    if (error instanceof CustomError) {
-        if (typeof error.statusCode === 'number') {
-            res.status(error.statusCode).json({
-                message: error.message,
-                errors: error.errors,
-            });
+  if (error instanceof CustomError) {
+    if (typeof error.statusCode === 'number') {
+      res.status(error.statusCode).json({
+        message: error.message,
+        errors: error.errors,
+      });
 
-            return;
-        }
+      return;
     }
+  }
 
-    res.status(500).send('Internal server error');
+  res.status(500).send('Internal server error');
 };

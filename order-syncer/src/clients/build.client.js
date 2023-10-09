@@ -8,8 +8,8 @@ import { readConfiguration } from '../utils/config.util.js';
  * This code creates a new client builder that can be used to make API calls
  */
 export const createClient = () =>
-    new ClientBuilder()
-        .withProjectKey(readConfiguration().projectKey)
-        .withClientCredentialsFlow(authMiddlewareOptions)
-        .withHttpMiddleware(httpMiddlewareOptions)
-        .build();
+  new ClientBuilder()
+    .withProjectKey(readConfiguration().projectKey)
+    .withClientCredentialsFlow(authMiddlewareOptions)
+    .withHttpMiddleware(httpMiddlewareOptions)
+    .build();

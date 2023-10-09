@@ -2,7 +2,6 @@ import { logger } from '../utils/logger.utils.js';
 
 export const syncHandler = async (request, response) => {
   try {
-
     // TODO: implement
   } catch (err) {
     logger.error(err);

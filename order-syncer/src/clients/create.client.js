@@ -7,15 +7,15 @@ import { readConfiguration } from '../utils/config.util.js';
  * apiRoot can now be used to build requests to de Composable Commerce API
  */
 export const createApiRoot = ((root) => () => {
-    if (root) {
-        return root;
-    }
-
-    root = createApiBuilderFromCtpClient(createClient()).withProjectKey({
-        projectKey: readConfiguration().projectKey,
-    });
-
+  if (root) {
     return root;
+  }
+
+  root = createApiBuilderFromCtpClient(createClient()).withProjectKey({
+    projectKey: readConfiguration().projectKey,
+  });
+
+  return root;
 })();
 
 /**
@@ -25,5 +25,5 @@ export const createApiRoot = ((root) => () => {
  *
  */
 export const getProject = async () => {
-    return await createApiRoot().get().execute();
+  return await createApiRoot().get().execute();
 };

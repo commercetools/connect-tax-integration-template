@@ -10,23 +10,23 @@ import { getValidateMessages } from '../validators/helpers.validator.js';
  */
 
 export const readConfiguration = () => {
-    const envVars = {
-        clientId: process.env.CTP_CLIENT_ID,
-        clientSecret: process.env.CTP_CLIENT_SECRET,
-        projectKey: process.env.CTP_PROJECT_KEY,
-        scope: process.env.CTP_SCOPE,
-        region: process.env.CTP_REGION,
-    };
+  const envVars = {
+    clientId: process.env.CTP_CLIENT_ID,
+    clientSecret: process.env.CTP_CLIENT_SECRET,
+    projectKey: process.env.CTP_PROJECT_KEY,
+    scope: process.env.CTP_SCOPE,
+    region: process.env.CTP_REGION,
+  };
 
-    const validationErrors = getValidateMessages(envValidators, envVars);
+  const validationErrors = getValidateMessages(envValidators, envVars);
 
-    if (validationErrors.length) {
-        throw new CustomError(
-            'InvalidEnvironmentVariablesError',
-            'Invalid Environment Variables please check your .env file',
-            validationErrors
-        );
-    }
+  if (validationErrors.length) {
+    throw new CustomError(
+      'InvalidEnvironmentVariablesError',
+      'Invalid Environment Variables please check your .env file',
+      validationErrors
+    );
+  }
 
-    return envVars;
+  return envVars;
 };
