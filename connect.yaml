@@ -1,0 +1,38 @@
+deployAs:
+  - name: tax-calculator
+    applicationType: service
+    endpoint: /
+    scripts:
+      postDeploy: npm install
+    configuration:
+      standardConfiguration:
+        - key: CTP_REGION
+          description: region of commercetools composable commerce project
+      securedConfiguration:
+        - key: CTP_PROJECT_KEY
+          description: project key from commercetools composable commerce project
+        - key: CTP_CLIENT_ID
+          description: client id from commercetools composable commerce project
+        - key: CTP_CLIENT_SECRET
+          description: client secret from commercetools composable commerce project
+        - key: CTP_SCOPE
+          description: scope from commercetools composable commerce project
+  - name: order-syncer
+    applicationType: event
+    endpoint: /
+    scripts:
+      postDeploy: npm install && npm run connector:post-deploy
+      preUndeploy: npm install && npm run connector:pre-undeploy
+    configuration:
+      standardConfiguration:
+        - key: CTP_REGION
+          description: region of commercetools composable commerce project
+      securedConfiguration:
+        - key: CTP_PROJECT_KEY
+          description: project key from commercetools composable commerce project
+        - key: CTP_CLIENT_ID
+          description: client id from commercetools composable commerce project
+        - key: CTP_CLIENT_SECRET
+          description: client secret from commercetools composable commerce project
+        - key: CTP_SCOPE
+          description: scope from commercetools composable commerce project
