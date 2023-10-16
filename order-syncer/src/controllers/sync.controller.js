@@ -1,4 +1,4 @@
-import { logger } from '../utils/logger.utils.js';
+import { logger } from '../utils/logger.util.js';
 
 export const syncHandler = async (request, response) => {
   try {
