@@ -1,13 +1,11 @@
-const ORDER_CHANGE_SUBSCRIPTION_KEY = 'your-subscription';
-
-export async function deleteChangedOrderSubscription(apiRoot) {
+export async function deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey) {
   const {
     body: { results: subscriptions },
   } = await apiRoot
     .subscriptions()
     .get({
       queryArgs: {
-        where: `key = "${ORDER_CHANGE_SUBSCRIPTION_KEY}"`,
+        where: `key = "${ctpOrderChangeSubscriptionKey}"`,
       },
     })
     .execute();
@@ -17,7 +15,7 @@ export async function deleteChangedOrderSubscription(apiRoot) {
 
     await apiRoot
       .subscriptions()
-      .withKey({ key: ORDER_CHANGE_SUBSCRIPTION_KEY })
+      .withKey({ key: ctpOrderChangeSubscriptionKey })
       .delete({
         queryArgs: {
           version: subscription.version,
@@ -28,28 +26,29 @@ export async function deleteChangedOrderSubscription(apiRoot) {
 }
 
 export async function createChangedOrderSubscription(
-  apiRoot,
-  topicName,
-  projectId
+    apiRoot,
+    topicName,
+    projectId,
+    ctpOrderChangeSubscriptionKey
 ) {
-  await deleteChangedOrderSubscription(apiRoot);
+  await deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey);
 
   await apiRoot
-    .subscriptions()
-    .post({
-      body: {
-        key: ORDER_CHANGE_SUBSCRIPTION_KEY,
-        destination: {
-          type: 'GoogleCloudPubSub',
-          topic: topicName,
-          projectId,
-        },
-        changes: [
-          {
-            resourceTypeId: 'order',
+      .subscriptions()
+      .post({
+        body: {
+          key: ctpOrderChangeSubscriptionKey,
+          destination: {
+            type: 'GoogleCloudPubSub',
+            topic: topicName,
+            projectId,
           },
-        ],
-      },
-    })
-    .execute();
+          changes: [
+            {
+              resourceTypeId: 'order',
+            },
+          ],
+        },
+      })
+      .execute();
 }
