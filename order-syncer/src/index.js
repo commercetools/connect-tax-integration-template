@@ -5,7 +5,7 @@ import bodyParser from 'body-parser';
 
 // Import routes
 import SyncRoutes from './routes/sync.route.js';
-import { logger } from './utils/logger.utils.js';
+import { logger } from './utils/logger.util.js';
 
 const PORT = 8080;
 
