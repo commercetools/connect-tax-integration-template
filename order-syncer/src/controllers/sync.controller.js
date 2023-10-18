@@ -1,19 +1,16 @@
 import { logger } from '../utils/logger.util.js';
 import { decodeToJson } from '../utils/decoder.util.js';
 
-
-
 export const syncHandler = async (request, response) => {
   try {
-    console.log('OrderSyncer')
+    console.log('OrderSyncer');
     // Receive the Pub/Sub message
     const encodedMessageBody = request.body.message.data;
     const messageBody = decodeToJson(encodedMessageBody);
     if (messageBody) {
       const notificationType = messageBody.notificationType;
       const productId = messageBody.resource.id;
-
-
+      console.log(messageBody);
     }
   } catch (err) {
     logger.error(err);

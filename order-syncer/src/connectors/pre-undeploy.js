@@ -6,7 +6,9 @@ const CTP_ORDER_CHANGE_SUBSCRIPTION_KEY = 'CTP_ORDER_CHANGE_SUBSCRIPTION_KEY';
 
 async function preUndeploy(properties) {
   const apiRoot = createApiRoot();
-  const ctpOrderChangeSubscriptionKey = properties.get(CTP_ORDER_CHANGE_SUBSCRIPTION_KEY);
+  const ctpOrderChangeSubscriptionKey = properties.get(
+    CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
+  );
   await deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey);
 }
 
