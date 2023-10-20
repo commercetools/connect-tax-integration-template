@@ -9,7 +9,7 @@ import {
 
 async function createTaxTransaction(cart) {
   // TODO : Invoke create tax transaction in tax-provider-specific extension
-  logger.info(`cart : ${cart}`);
+  logger.info(`cart : ${JSON.stringify(cart)}`);
 }
 
 export const syncHandler = async (request, response) => {
