@@ -19,7 +19,7 @@ deployAs:
           description: scope from commercetools composable commerce project
   - name: order-syncer
     applicationType: event
-    endpoint: /
+    endpoint: /orderSyncer
     scripts:
       postDeploy: npm install && npm run connector:post-deploy
       preUndeploy: npm install && npm run connector:pre-undeploy
