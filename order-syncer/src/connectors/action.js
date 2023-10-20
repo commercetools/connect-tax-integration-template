@@ -1,3 +1,5 @@
+import { MESSAGE_TYPE } from '../constants/message.type.constants.js';
+
 export async function deleteChangedOrderSubscription(
   apiRoot,
   ctpOrderChangeSubscriptionKey
@@ -49,7 +51,7 @@ export async function createChangedOrderSubscription(
         messages: [
           {
             resourceTypeId: 'order',
-            types: ['OrderStateChanged'],
+            types: MESSAGE_TYPE,
           },
         ],
       },
