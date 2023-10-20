@@ -1,1 +1,1 @@
-export const MESSAGE_TYPE = ['OrderStateChanged'];
+export const MESSAGE_TYPE = ['OrderCreated'];
