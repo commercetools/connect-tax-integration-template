@@ -1,12 +1,9 @@
 export function loadConfig() {
-  try {
+  if (process.env.TAX_PROVIDER_API_TOKEN) {
     return {
-      taxProviderApiToken : process.env.TAX_PROVIDER_API_TOKEN
+      taxProviderApiToken: process.env.TAX_PROVIDER_API_TOKEN,
     };
-  } catch (e) {
-    throw new Error(
-      'Tax provider API token is not provided.'
-    );
+  } else {
+    throw new Error('Tax provider API token is not provided.');
   }
 }
-
