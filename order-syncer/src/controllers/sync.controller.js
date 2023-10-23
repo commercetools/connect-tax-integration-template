@@ -11,7 +11,6 @@ import CustomError from '../errors/custom.error.js';
 import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../constants/http.status.constants.js';
 
 async function syncToTaxProvider(orderId, cart) {
-  // TODO : Invoke create tax transaction in tax-provider-specific extension
   await createTaxTransaction(orderId, cart).catch((error) => {
     throw new CustomError(
       HTTP_STATUS_SUCCESS_ACCEPTED,
