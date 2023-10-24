@@ -1,9 +1,8 @@
 import { createApiRoot } from '../clients/create.client.js';
 import { createChangedOrderSubscription } from './action.js';
-
+import { CTP_ORDER_CHANGE_SUBSCRIPTION_KEY } from './constants.js';
 const CONNECT_GCP_TOPIC_NAME_KEY = 'CONNECT_GCP_TOPIC_NAME';
 const CONNECT_GCP_PROJECT_ID_KEY = 'CONNECT_GCP_PROJECT_ID';
-const CTP_ORDER_CHANGE_SUBSCRIPTION_KEY = 'CTP_ORDER_CHANGE_SUBSCRIPTION_KEY';
 
 async function postDeploy(properties) {
   const topicName = properties.get(CONNECT_GCP_TOPIC_NAME_KEY);
