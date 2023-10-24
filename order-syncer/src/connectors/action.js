@@ -1,4 +1,9 @@
-export async function deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey) {
+import { MESSAGE_TYPE } from '../constants/message.type.constants.js';
+
+export async function deleteChangedOrderSubscription(
+  apiRoot,
+  ctpOrderChangeSubscriptionKey
+) {
   const {
     body: { results: subscriptions },
   } = await apiRoot
@@ -26,29 +31,30 @@ export async function deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubs
 }
 
 export async function createChangedOrderSubscription(
-    apiRoot,
-    topicName,
-    projectId,
-    ctpOrderChangeSubscriptionKey
+  apiRoot,
+  topicName,
+  projectId,
+  ctpOrderChangeSubscriptionKey
 ) {
   await deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey);
 
   await apiRoot
-      .subscriptions()
-      .post({
-        body: {
-          key: ctpOrderChangeSubscriptionKey,
-          destination: {
-            type: 'GoogleCloudPubSub',
-            topic: topicName,
-            projectId,
-          },
-          changes: [
-            {
-              resourceTypeId: 'order',
-            },
-          ],
+    .subscriptions()
+    .post({
+      body: {
+        key: ctpOrderChangeSubscriptionKey,
+        destination: {
+          type: 'GoogleCloudPubSub',
+          topic: topicName,
+          projectId,
         },
-      })
-      .execute();
+        messages: [
+          {
+            resourceTypeId: 'order',
+            types: MESSAGE_TYPE,
+          },
+        ],
+      },
+    })
+    .execute();
 }
