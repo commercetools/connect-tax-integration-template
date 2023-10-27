@@ -1,5 +1,5 @@
 import { createApiRoot } from '../clients/create.client.js';
-import { CTP_ORDER_CHANGE_SUBSCRIPTION_KEY } from './constants.js';
+import { CTP_ORDER_CHANGE_SUBSCRIPTION_KEY } from '../constants/connectors.constants.js';
 import { deleteChangedOrderSubscription } from './actions.js';
 
 async function preUndeploy(properties) {

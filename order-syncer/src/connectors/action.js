@@ -1,4 +1,4 @@
-import { MESSAGE_TYPE } from '../constants/message.type.constants.js';
+import { MESSAGE_TYPE } from '../constants/connectors.constants.js';
 
 export async function deleteChangedOrderSubscription(
   apiRoot,

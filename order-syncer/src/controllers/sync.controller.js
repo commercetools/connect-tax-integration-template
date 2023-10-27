@@ -6,10 +6,18 @@ import {
   HTTP_STATUS_SUCCESS_NO_CONTENT,
   HTTP_STATUS_SERVER_ERROR,
 } from '../constants/http.status.constants.js';
+import createTaxTransaction from '../extensions/stripe/clients/client.js';
+import CustomError from '../errors/custom.error.js';
+import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../constants/http.status.constants.js';
 
-async function createTaxTransaction(cart) {
-  // TODO : Invoke create tax transaction in tax-provider-specific extension
-  logger.info(`cart : ${JSON.stringify(cart)}`);
+async function syncToTaxProvider(orderId, cart) {
+  await createTaxTransaction(orderId, cart).catch((error) => {
+    throw new CustomError(
+      HTTP_STATUS_SUCCESS_ACCEPTED,
+      `Error from extension : ${error.message}`,
+      error
+    );
+  });
 }
 
 export const syncHandler = async (request, response) => {
@@ -24,7 +32,7 @@ export const syncHandler = async (request, response) => {
     if (orderId) {
       const cart = await getCartByOrderId(orderId);
       if (cart) {
-        await createTaxTransaction(cart);
+        await syncToTaxProvider(orderId, cart);
       }
     }
   } catch (err) {
