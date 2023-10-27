@@ -1,6 +1,6 @@
 import CustomError from '../errors/custom.error.js';
 import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../constants/http.status.constants.js';
-import { MESSAGE_TYPE } from '../constants/message.type.constants.js';
+import { MESSAGE_TYPE } from '../constants/connectors.constants.js';
 
 export function doValidation(messageBody) {
   if (!messageBody) {
