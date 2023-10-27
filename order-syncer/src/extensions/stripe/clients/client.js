@@ -11,7 +11,7 @@ function createClient() {
 export default async function createTaxTransaction(orderId, cart) {
   if (!stripeClient) stripeClient = createClient();
 
-  const calculationId = cart?.custom?.fields?.taxProviderReference;
+  const calculationId = cart?.custom?.fields?.taxCalculationReference;
   if (calculationId) {
     const txnCreateFromCalculationParams = {
       calculation: calculationId,
