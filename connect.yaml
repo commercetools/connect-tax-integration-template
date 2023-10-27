@@ -38,3 +38,5 @@ deployAs:
           description: client secret from commercetools composable commerce project
         - key: CTP_SCOPE
           description: scope from commercetools composable commerce project
+        - key: TAX_PROVIDER_API_TOKEN
+          description: API Token for communication between the connector and tax provider
