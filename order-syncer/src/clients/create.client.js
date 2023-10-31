@@ -1,6 +1,6 @@
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import { createClient } from './build.client.js';
-import { readConfiguration } from '../utils/config.util.js';
+import readConfiguration from '../utils/config.util.js';
 
 /**
  * Create client with apiRoot

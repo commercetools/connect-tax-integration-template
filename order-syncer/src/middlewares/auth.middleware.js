@@ -1,14 +1,15 @@
-import { readConfiguration } from '../utils/config.util.js';
+import readConfiguration from '../utils/config.util.js';
 
 /**
  * Configure Middleware. Example only. Adapt on your own
  */
+const config = readConfiguration;
 export const authMiddlewareOptions = {
-  host: `https://auth.${readConfiguration().region}.commercetools.com`,
-  projectKey: readConfiguration().projectKey,
+  host: `https://auth.${config.region}.commercetools.com`,
+  projectKey: config.projectKey,
   credentials: {
-    clientId: readConfiguration().clientId,
-    clientSecret: readConfiguration().clientSecret,
+    clientId: config.clientId,
+    clientSecret: config.clientSecret,
   },
-  scopes: [readConfiguration().scope ? readConfiguration().scope : 'default'],
+  scopes: [config.scope ? config.scope : 'default'],
 };
