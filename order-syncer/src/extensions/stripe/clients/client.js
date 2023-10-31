@@ -17,7 +17,6 @@ export default async function createTaxTransaction(orderId, cart) {
       calculation: calculationId,
       reference: orderId,
     };
-    const stripeClient = createClient();
     await stripeClient.tax.transactions.createFromCalculation(
       txnCreateFromCalculationParams
     );

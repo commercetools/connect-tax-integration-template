@@ -5,7 +5,8 @@ import { getCartByOrderId } from '../clients/query.client.js';
 import {
   HTTP_STATUS_SUCCESS_NO_CONTENT,
   HTTP_STATUS_SERVER_ERROR,
-  HTTP_STATUS_SUCCESS_ACCEPTED, HTTP_STATUS_BAD_REQUEST
+  HTTP_STATUS_SUCCESS_ACCEPTED,
+  HTTP_STATUS_BAD_REQUEST,
 } from '../constants/http.status.constants.js';
 import createTaxTransaction from '../extensions/stripe/clients/client.js';
 import CustomError from '../errors/custom.error.js';
@@ -26,7 +27,10 @@ export const syncHandler = async (request, response) => {
 
     const encodedMessageBody = request.body?.message?.data;
     if (!encodedMessageBody) {
-      throw new CustomError(HTTP_STATUS_BAD_REQUEST, 'Missing message data from incoming event message.')
+      throw new CustomError(
+        HTTP_STATUS_BAD_REQUEST,
+        'Missing message data from incoming event message.'
+      );
     }
 
     const messageBody = decodeToJson(encodedMessageBody);
@@ -40,7 +44,10 @@ export const syncHandler = async (request, response) => {
         await syncToTaxProvider(orderId, cart);
       }
     } else {
-      throw new CustomError(HTTP_STATUS_BAD_REQUEST, 'Missing order ID from incoming event message.')
+      throw new CustomError(
+        HTTP_STATUS_BAD_REQUEST,
+        'Missing order ID from incoming event message.'
+      );
     }
   } catch (err) {
     logger.error(err);
