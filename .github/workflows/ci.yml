@@ -58,4 +58,4 @@ jobs:
         run: npm run lint && npm run prettier
 
       - name: Execute unit tests
-        run: npm run unit
+        run: npm run test:unit
