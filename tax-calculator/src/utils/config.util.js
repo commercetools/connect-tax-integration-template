@@ -1,3 +1,6 @@
+import { fileURLToPath } from 'url'
+import path from 'path'
+import fs from 'node:fs/promises'
 import CustomError from '../errors/custom.error.js';
 import envValidators from '../validators/env-var.validators.js';
 import { getValidateMessages } from '../validators/helpers.validators.js';
@@ -30,3 +33,12 @@ export const readConfiguration = () => {
 
   return envVars;
 };
+
+export async function readAndParseJsonFile(pathToJsonFileFromProjectRoot) {
+  const currentFilePath = fileURLToPath(import.meta.url)
+  const currentDirPath = path.dirname(currentFilePath)
+  const projectRoot = path.resolve(currentDirPath, '..')
+  const pathToFile = path.resolve(projectRoot, pathToJsonFileFromProjectRoot)
+  const fileContent = await fs.readFile(pathToFile)
+  return JSON.parse(fileContent)
+}
