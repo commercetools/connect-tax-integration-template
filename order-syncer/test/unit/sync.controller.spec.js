@@ -11,7 +11,7 @@ describe('sync.controller.spec', () => {
     sandbox.restore();
   });
 
-  it(`should returns 400 HTTP status when message data is missing in incoming event message.`, async () => {
+  it(`should return 400 HTTP status when message data is missing in incoming event message.`, async () => {
     const dummyConfig = {
       clientId: 'dummy-ctp-client-id',
       clientSecret: 'dummy-ctp-client-secret',
