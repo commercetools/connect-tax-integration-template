@@ -18,7 +18,7 @@ export async function getCartByOrderId(orderId) {
     .catch((error) => {
       throw new CustomError(
         HTTP_STATUS_RESOURCE_NOT_FOUND,
-        `Bad request: ${error.message}`,
+        error.message,
         error
       );
     });

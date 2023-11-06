@@ -1,7 +1,7 @@
 import { ClientBuilder } from '@commercetools/sdk-client-v2';
 import { authMiddlewareOptions } from '../middlewares/auth.middleware.js';
 import { httpMiddlewareOptions } from '../middlewares/http.middleware.js';
-import { readConfiguration } from '../utils/config.util.js';
+import readConfiguration from '../utils/config.util.js';
 
 /**
  * Create a new client builder.
