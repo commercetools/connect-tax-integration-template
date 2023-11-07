@@ -91,25 +91,22 @@ export async function deleteCTPExtension(
     apiRoot,
     ctpTaxCalculatorExtensionKey
 ) {
-  const {
-    body: {results: extension},
-  } = await apiRoot
-      .extensions()
-      .get({
-        queryArgs: {
-          where: `key = "${ctpTaxCalculatorExtensionKey}"`,
-        },
-      })
-      .execute();
-
-  await apiRoot
-      .extension()
-      .withKey({key: ctpTaxCalculatorExtensionKey})
-      .delete({
-        queryArgs: {
-          version: extension.version,
-        },
-      })
-      .execute();
+  const existingExtension = await fetchExtensionByKey(
+      apiRoot,
+      ctpTaxCalculatorExtensionKey,
+  )
+  if (existingExtension !== null) {
+    await apiRoot
+        .extension()
+        .withKey({key: ctpTaxCalculatorExtensionKey})
+        .delete({
+          queryArgs: {
+            version: existingExtension.version,
+          },
+        })
+        .execute();
+  } else {
+    logger.info('No API extension found for the given key ' + `(key=${ctpTaxCalculatorExtensionKey})`)
+  }
 }
 
