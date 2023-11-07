@@ -10,5 +10,5 @@
       "actions": ["Create", "Update"]
     }
   ],
-  "timeoutInMs": 10000
+  "timeoutInMs": 2000
 }
