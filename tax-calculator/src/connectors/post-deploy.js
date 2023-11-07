@@ -1,9 +1,10 @@
 import { createApiRoot } from '../clients/create.client.js';
 import { createCTPExtension } from './action.js';
-import { CTP_EXTENSION_BASE_URL, CTP_TAX_CALCULATOR_EXTENSION_KEY } from './constants.js';
+import { CONNECT_SERVICE_URL, CTP_TAX_CALCULATOR_EXTENSION_KEY } from './constants.js';
 
 async function postDeploy(properties) {
-  const ctpExtensionBaseUrl = properties.get(CTP_EXTENSION_BASE_URL);
+  //The URL of deployed connector could be obtained via env-var CONNECT_SERVICE_URL after deployment.
+  const ctpExtensionBaseUrl = properties.get(CONNECT_SERVICE_URL);
 
   const apiRoot = createApiRoot();
   await createCTPExtension(
