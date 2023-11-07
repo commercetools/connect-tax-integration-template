@@ -1,5 +1,5 @@
 import { logger } from '../utils/logger.utils.js';
-const stripe = require('stripe')
+// const stripe = require('stripe')
 
 export const taxHandler = async (request, response) => {
   let calculation;
