@@ -4,8 +4,9 @@ const stripe = require('stripe')
 export const taxHandler = async (request, response) => {
   let calculation;
   try {
-    const cart = request.body.message.data;
-    calculation = await stripe.tax.calculations.create(cart);
+    // TODO
+    // const cart = request.body.message.data;
+    // calculation = await stripe.tax.calculations.create(cart);
 
   } catch (err) {
     logger.error(err);
