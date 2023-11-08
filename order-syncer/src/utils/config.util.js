@@ -30,6 +30,4 @@ function readConfiguration() {
   return envVars;
 }
 
-export default {
-  readConfiguration,
-};
+export default readConfiguration;
