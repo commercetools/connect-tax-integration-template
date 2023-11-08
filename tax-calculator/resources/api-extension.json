@@ -1,0 +1,14 @@
+{
+  "key": "${ctpTaxCalculatorExtensionKey}",
+  "destination": {
+    "type": "HTTP",
+    "url": "${ctpExtensionBaseUrl}"
+  },
+  "triggers": [
+    {
+      "resourceTypeId": "cart",
+      "actions": ["Create", "Update"]
+    }
+  ],
+  "timeoutInMs": 2000
+}

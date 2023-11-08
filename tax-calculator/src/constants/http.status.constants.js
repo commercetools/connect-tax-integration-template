@@ -1,0 +1,1 @@
+export const HTTP_STATUS_RESOURCE_NOT_FOUND = 404;
