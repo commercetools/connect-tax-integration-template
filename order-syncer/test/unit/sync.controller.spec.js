@@ -1,14 +1,13 @@
-import { expect, describe, it } from '@jest/globals';
+import { expect, describe, it, afterEach} from '@jest/globals';
 
 import sinon from 'sinon';
 import { syncHandler } from '../../src/controllers/sync.controller.js';
 import { HTTP_STATUS_BAD_REQUEST } from '../../src/constants/http.status.constants.js';
-const sandbox = sinon.createSandbox();
-import configUtil from '../../src/utils/config.util.js';
+import * as ConfigUtil from '../../src/utils/config.util.js';
 
 describe('sync.controller.spec', () => {
   afterEach(() => {
-    sandbox.restore();
+    sinon.restore();
   });
 
   it(`should return 400 HTTP status when message data is missing in incoming event message.`, async () => {
@@ -19,7 +18,8 @@ describe('sync.controller.spec', () => {
       scope: 'dummy-ctp-scope',
       region: 'dummy-ctp-region',
     };
-    sandbox.stub(configUtil, 'readConfiguration').callsFake(() => {
+
+    sinon.stub(ConfigUtil, 'default').callsFake(() => {
       return dummyConfig;
     });
     const mockRequest = {
@@ -36,7 +36,7 @@ describe('sync.controller.spec', () => {
         };
       },
     };
-    const responseStatusSpy = sandbox.spy(mockResponse, 'status');
+    const responseStatusSpy = sinon.spy(mockResponse, 'status');
 
     await syncHandler(mockRequest, mockResponse);
     expect(responseStatusSpy.firstCall.firstArg).toEqual(
