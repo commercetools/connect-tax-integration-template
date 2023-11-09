@@ -32,7 +32,7 @@ function readConfiguration() {
   }
 
   return envVars;
-};
+}
 
 async function readAndParseJsonFile(pathToJsonFileFromProjectRoot) {
   const currentFilePath = fileURLToPath(__filename)
