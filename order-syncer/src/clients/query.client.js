@@ -7,7 +7,6 @@ const queryArgs = {
 };
 
 export async function getCartByOrderId(orderId) {
-  orderId = 'dummy-order-id'
   return await createApiRoot()
     .orders()
     .withId({
@@ -17,10 +16,6 @@ export async function getCartByOrderId(orderId) {
     .execute()
     .then((response) => response.body?.cart.obj)
     .catch((error) => {
-      throw new CustomError(
-        HTTP_STATUS_SUCCESS_ACCEPTED,
-        error.message,
-        error
-      );
+      throw new CustomError(HTTP_STATUS_SUCCESS_ACCEPTED, error.message, error);
     });
 }
