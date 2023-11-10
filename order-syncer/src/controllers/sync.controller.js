@@ -26,7 +26,7 @@ export const syncHandler = async (request, response) => {
     const encodedMessageBody = request.body?.message?.data;
     if (!encodedMessageBody) {
       throw new CustomError(
-          HTTP_STATUS_SUCCESS_ACCEPTED,
+        HTTP_STATUS_SUCCESS_ACCEPTED,
         'Missing message data from incoming event message.'
       );
     }
@@ -39,7 +39,6 @@ export const syncHandler = async (request, response) => {
     if (cart) {
       await syncToTaxProvider(orderId, cart);
     }
-
   } catch (err) {
     logger.error(err);
     if (err.statusCode) return response.status(err.statusCode).send(err);

@@ -1,8 +1,8 @@
-import { expect, describe, it, afterEach} from '@jest/globals';
+import { expect, describe, it, afterEach } from '@jest/globals';
 
 import sinon from 'sinon';
 import { syncHandler } from '../../src/controllers/sync.controller.js';
-import { HTTP_STATUS_BAD_REQUEST } from '../../src/constants/http.status.constants.js';
+import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../../src/constants/http.status.constants.js';
 import * as ConfigUtil from '../../src/utils/config.util.js';
 
 describe('sync.controller.spec', () => {
@@ -40,7 +40,7 @@ describe('sync.controller.spec', () => {
 
     await syncHandler(mockRequest, mockResponse);
     expect(responseStatusSpy.firstCall.firstArg).toEqual(
-      HTTP_STATUS_BAD_REQUEST
+      HTTP_STATUS_SUCCESS_ACCEPTED
     );
   });
 });
