@@ -12,7 +12,7 @@
     "test": "npm run test:unit",
     "test:integration": "node_modules/.bin/jest --config test/integration/jest.config.cjs --silent=false",
     "test:unit": "node_modules/.bin/jest --config test/unit/jest.config.cjs",
-    "test:ci": "npm run test:integration"
+    "test:ci": "npm run test:unit && npm run test:integration"
   },
   "author": "",
   "license": "MIT",
