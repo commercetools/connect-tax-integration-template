@@ -6,7 +6,6 @@ import {
   HTTP_STATUS_SUCCESS_NO_CONTENT,
   HTTP_STATUS_SERVER_ERROR,
   HTTP_STATUS_SUCCESS_ACCEPTED,
-  HTTP_STATUS_BAD_REQUEST,
 } from '../constants/http.status.constants.js';
 import createTaxTransaction from '../extensions/stripe/clients/client.js';
 import CustomError from '../errors/custom.error.js';
@@ -24,11 +23,10 @@ async function syncToTaxProvider(orderId, cart) {
 export const syncHandler = async (request, response) => {
   try {
     // Receive the Pub/Sub message
-
     const encodedMessageBody = request.body?.message?.data;
     if (!encodedMessageBody) {
       throw new CustomError(
-        HTTP_STATUS_BAD_REQUEST,
+          HTTP_STATUS_SUCCESS_ACCEPTED,
         'Missing message data from incoming event message.'
       );
     }
@@ -37,18 +35,11 @@ export const syncHandler = async (request, response) => {
     doValidation(messageBody);
 
     const orderId = messageBody?.resource?.id;
-
-    if (orderId) {
-      const cart = await getCartByOrderId(orderId);
-      if (cart) {
-        await syncToTaxProvider(orderId, cart);
-      }
-    } else {
-      throw new CustomError(
-        HTTP_STATUS_BAD_REQUEST,
-        'Missing order ID from incoming event message.'
-      );
+    const cart = await getCartByOrderId(orderId);
+    if (cart) {
+      await syncToTaxProvider(orderId, cart);
     }
+
   } catch (err) {
     logger.error(err);
     if (err.statusCode) return response.status(err.statusCode).send(err);
