@@ -23,9 +23,7 @@ describe('tax-calculator.controller.spec', () => {
     const mockRequest = {
       method: 'POST',
       url: '/',
-      body: {
-        message: {},
-      },
+      body: {},
     };
     const mockResponse = {
       status: () => {

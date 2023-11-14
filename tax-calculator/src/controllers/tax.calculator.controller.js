@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import { logger } from '../utils/logger.utils.js';
 import {
   HTTP_STATUS_BAD_REQUEST,
@@ -10,7 +11,7 @@ export const taxHandler = async (request, response) => {
   let calculation;
 
   const cartRequestBody = request.body
-  if (!cartRequestBody) {
+  if (_.isEmpty(cartRequestBody)) {
     return response.status(HTTP_STATUS_BAD_REQUEST).send(new CustomError(
         HTTP_STATUS_BAD_REQUEST,
         'Missing cart information in the request body.'
