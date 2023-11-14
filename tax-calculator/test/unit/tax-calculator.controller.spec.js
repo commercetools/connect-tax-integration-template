@@ -1,4 +1,4 @@
-import { expect, describe, it } from '@jest/globals';
+import { expect, describe, it, afterEach } from '@jest/globals';
 import sinon from 'sinon';
 import { taxHandler } from '../../src/controllers/tax.calculator.controller.js';
 import configUtil from '../../src/utils/config.util.js';
