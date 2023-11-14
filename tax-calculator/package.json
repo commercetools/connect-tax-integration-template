@@ -10,7 +10,7 @@
     "lint": "node_modules/.bin/eslint src --ext .js",
     "prettier": "node_modules/.bin/prettier --write '**/*.{js,ts}'",
     "test": "npm run test:unit",
-    "test:unit": "node_modules/.bin/jest --config jest.config.cjs",
+    "test:unit": "node_modules/.bin/jest --config jest.config.unit.cjs",
     "test:ci": "npm run test:unit"
   },
   "author": "",
