@@ -1,4 +1,3 @@
-const stripe = require('stripe')
 import { logger } from '../utils/logger.utils.js';
 import {
   HTTP_STATUS_BAD_REQUEST,
@@ -10,17 +9,17 @@ import CustomError from "../errors/custom.error.js";
 export const taxHandler = async (request, response) => {
   let calculation;
 
-  const encodedMessageBody = request.body?.message?.data;
-  if (!encodedMessageBody) {
+  const cartRequestBody = request.body
+  if (!cartRequestBody) {
     return response.status(HTTP_STATUS_BAD_REQUEST).send(new CustomError(
         HTTP_STATUS_BAD_REQUEST,
-        'Missing message data from incoming event message.'
+        'Missing cart information in the request body.'
     ));
   }
 
   try {
-    calculation = await stripe.tax.calculations.create(encodedMessageBody);
-
+    // Implement tax calculation. For reference, Check the branch in this git repo: stripe-implementation
+    calculation = {}
   } catch (err) {
     logger.error(err);
     if (err.statusCode) return response.status(err.statusCode).send(err);
