@@ -1,6 +1,6 @@
 import _ from 'lodash'
 import { serializeError } from 'serialize-error'
-import { readAndParseJsonFile } from '../utils/config.util.js';
+import configUtils from '../utils/config.util.js';
 import { logger } from "../utils/logger.utils.js";
 
 export async function createCTPExtension(
@@ -9,7 +9,7 @@ export async function createCTPExtension(
   ctpExtensionBaseUrl
 ) {
 
-  const apiExtensionTemplate = await readAndParseJsonFile(
+  const apiExtensionTemplate = await configUtils.readAndParseJsonFile(
       'resources/api-extension.json',
   )
   try {

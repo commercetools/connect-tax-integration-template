@@ -1,7 +1,7 @@
 import { ClientBuilder } from '@commercetools/sdk-client-v2';
 import { authMiddlewareOptions } from '../middlewares/auth.middleware.js';
 import { httpMiddlewareOptions } from '../middlewares/http.middleware.js';
-import { readConfiguration } from '../utils/config.util.js';
+import configUtils from '../utils/config.util.js';
 
 /**
  * Create a new client builder.
@@ -9,7 +9,7 @@ import { readConfiguration } from '../utils/config.util.js';
  */
 export const createClient = () =>
   new ClientBuilder()
-    .withProjectKey(readConfiguration().projectKey)
+    .withProjectKey(configUtils.readConfiguration().projectKey)
     .withClientCredentialsFlow(authMiddlewareOptions)
     .withHttpMiddleware(httpMiddlewareOptions)
     .build();
