@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import {taxHandler} from '../controllers/tax.calculator.controller.js';
+import { taxHandler } from '../controllers/tax.calculator.controller.js';
 
 const syncRouter = Router();
 
