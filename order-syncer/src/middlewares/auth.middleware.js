@@ -4,7 +4,6 @@ import readConfiguration from '../utils/config.util.js';
  * Configure Middleware. Example only. Adapt on your own
  */
 
-
 export const getAuthMiddlewareOptions = () => {
   const config = readConfiguration();
   return {
@@ -15,5 +14,5 @@ export const getAuthMiddlewareOptions = () => {
       clientSecret: config.clientSecret,
     },
     scopes: [config.scope ? config.scope : 'default'],
-  }
+  };
 };
