@@ -3,7 +3,8 @@ import readConfiguration from '../utils/config.util.js';
 /**
  * Configure Middleware. Example only. Adapt on your own
  */
-const config = readConfiguration;
+const config = readConfiguration();
+
 export const authMiddlewareOptions = {
   host: `https://auth.${config.region}.commercetools.com`,
   projectKey: config.projectKey,

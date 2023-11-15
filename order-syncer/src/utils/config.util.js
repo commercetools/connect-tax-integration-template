@@ -8,7 +8,7 @@ import { getValidateMessages } from '../validators/helpers.validator.js';
  *
  * @returns The configuration with the correct env vars
  */
-function readConfiguration() {
+export default function readConfiguration() {
   const envVars = {
     clientId: process.env.CTP_CLIENT_ID,
     clientSecret: process.env.CTP_CLIENT_SECRET,
@@ -29,7 +29,3 @@ function readConfiguration() {
 
   return envVars;
 }
-
-export default {
-  readConfiguration,
-};
