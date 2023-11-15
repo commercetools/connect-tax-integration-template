@@ -9,7 +9,7 @@ import {
 } from '../constants/http.status.constants.js';
 import CustomError from '../errors/custom.error.js';
 
-async function syncToTaxProvider(orderId, cart) {
+async function syncToTaxProvider() {
   // TODO : Invocation of tax-provider API implemented in src/extensions
 }
 
@@ -30,7 +30,7 @@ export const syncHandler = async (request, response) => {
     const orderId = messageBody?.resource?.id;
     const cart = await getCartByOrderId(orderId);
     if (cart) {
-      await syncToTaxProvider(orderId, cart);
+      await syncToTaxProvider();
     }
   } catch (err) {
     logger.error(err);
