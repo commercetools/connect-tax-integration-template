@@ -7,17 +7,10 @@ import {
   HTTP_STATUS_SERVER_ERROR,
   HTTP_STATUS_SUCCESS_ACCEPTED,
 } from '../constants/http.status.constants.js';
-import createTaxTransaction from '../extensions/stripe/clients/client.js';
 import CustomError from '../errors/custom.error.js';
 
 async function syncToTaxProvider(orderId, cart) {
-  await createTaxTransaction(orderId, cart).catch((error) => {
-    throw new CustomError(
-      HTTP_STATUS_SUCCESS_ACCEPTED,
-      `Error from extension : ${error.message}`,
-      error
-    );
-  });
+  // TODO : Invocation of tax-provider API implemented in src/extensions
 }
 
 export const syncHandler = async (request, response) => {
