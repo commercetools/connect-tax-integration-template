@@ -4,7 +4,10 @@ import { deleteChangedOrderSubscription } from './actions.js';
 
 async function preUndeploy() {
   const apiRoot = createApiRoot();
-  await deleteChangedOrderSubscription(apiRoot, CTP_ORDER_CHANGE_SUBSCRIPTION_KEY);
+  await deleteChangedOrderSubscription(
+    apiRoot,
+    CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
+  );
 }
 
 async function run() {
