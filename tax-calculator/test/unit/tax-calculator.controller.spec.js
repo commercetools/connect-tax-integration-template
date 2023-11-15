@@ -2,7 +2,7 @@ import { expect, describe, it, afterEach } from '@jest/globals';
 import sinon from 'sinon';
 import { taxHandler } from '../../src/controllers/tax.calculator.controller.js';
 import configUtil from '../../src/utils/config.util.js';
-import { HTTP_STATUS_BAD_REQUEST } from "../../src/constants/http.status.constants.js";
+import { HTTP_STATUS_BAD_REQUEST } from '../../src/constants/http.status.constants.js';
 
 describe('tax-calculator.controller.spec', () => {
   afterEach(() => {
