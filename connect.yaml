@@ -27,8 +27,6 @@ deployAs:
       standardConfiguration:
         - key: CTP_REGION
           description: region of commercetools composable commerce project
-        - key: CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
-          description: Key of commercetools subscription which subscribes any change in commercetools order resources
       securedConfiguration:
         - key: CTP_PROJECT_KEY
           description: project key from commercetools composable commerce project
