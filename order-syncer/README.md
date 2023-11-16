@@ -5,6 +5,7 @@ The module also provides scripts for post-deployment and pre-undeployment action
 
 The commercetools Subscription would be cleared once the tax integration connector is undeployed.
 
+![Payment flow](./docs/images/order-syncer.architecture.png)
 ## Get started
 #### Change the key of commercetools Subscription
 Please specify your desired key for creation of commercetools Subscription [here](https://github.com/commercetools/connect-tax-integration-template/blob/dbdce163f08b36d8635d7705dd58c89d03bf8399/order-syncer/src/constants/connectors.constants.js#L3).
