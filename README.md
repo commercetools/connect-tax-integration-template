@@ -1,1 +1,4 @@
 # connect-tax-integration-template
+This repository provides a [connect](https://docs.commercetools.com/connect) template for a tax integration connector for tax amount calculation performed by external tax provider with card/order data from composable commerce. This boilerplate code acts as a starting point for such integration.
+
+This template uses the [Cart](https://docs.commercetools.com/api/projects/carts),  [Order](https://docs.commercetools.com/api/projects/orders), [API Extension](https://docs.commercetools.com/api/projects/api-extensions), data models from commercetools composable commerce which can be used for querying Store-specific product data to sync into external systems. Template is based on asynchronous [Subscriptions](https://docs.commercetools.com/api/projects/subscriptions) to keep the external systems up to date.
