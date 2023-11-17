@@ -11,7 +11,7 @@
     "prettier": "node_modules/.bin/prettier --write '**/*.{js,ts}'",
     "test": "npm run test:unit",
     "test:unit": "node_modules/.bin/jest --config jest.config.unit.cjs",
-    "test:integration": "node_modules/.bin/jest --config jest.config.integration.cjs --silent=false",
+    "test:integration": "node_modules/.bin/jest --config jest.config.integration.cjs",
     "test:ci": "npm run test:unit && npm run test:integration"
   },
   "author": "",
