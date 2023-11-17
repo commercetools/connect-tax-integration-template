@@ -25,14 +25,11 @@ describe('Test tax-calculator.controller.js', () => {
 
   it(`When payload body exists without correct cart information, it should returns 400 http status`, async () => {
     let response = {};
-    let payload = {
-      message: {
-      },
-    };
+    let payload = {};
     response = await request(server).post(`/taxCalculator`).send(payload);
 
     expect(response).toBeDefined();
-    expect(response.statusCode).toEqual(HTTP_STATUS_SUCCESS_ACCEPTED);
+    expect(response.statusCode).toEqual(HTTP_STATUS_BAD_REQUEST);
   });
 
   afterAll(() => {
