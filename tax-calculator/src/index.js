@@ -4,7 +4,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 // Import routes
-import SyncRoutes from './routes/tax.calculator.route.js';
+import taxCalculatorRouter from './routes/tax.calculator.route.js';
 import { logger } from './utils/logger.utils.js';
 
 const PORT = 8080;
@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Define routes
-app.use('/', SyncRoutes);
+app.use('/', taxCalculatorRouter);
 
 // Listen the application
 const server = app.listen(PORT, () => {
