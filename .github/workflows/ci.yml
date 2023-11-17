@@ -30,8 +30,8 @@ jobs:
       - name: Check the coding style
         run: npm run lint && npm run prettier
 
-      - name: Execute unit tests
-        run: npm run test:unit
+      - name: Execute tests
+        run: npm run test:ci
 
   build-order-syncer:
     name: Build the application for order-syncer
