@@ -1,10 +1,9 @@
 import { Router } from 'express';
 
-import {taxHandler} from '../controllers/tax.calculator.controller.js';
+import { taxHandler } from '../controllers/tax.calculator.controller.js';
 
-const syncRouter = Router();
+const taxCalculatorRouter = Router();
 
-// TODO: Give a specific route name
-syncRouter.post('/', taxHandler);
+taxCalculatorRouter.post('/taxCalculator', taxHandler);
 
-export default syncRouter;
+export default taxCalculatorRouter;

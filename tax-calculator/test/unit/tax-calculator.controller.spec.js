@@ -1,11 +1,10 @@
 import { expect, describe, it, afterEach } from '@jest/globals';
-
 import sinon from 'sinon';
-import { syncHandler } from '../../src/controllers/sync.controller.js';
-import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../../src/constants/http.status.constants.js';
-import * as ConfigUtil from '../../src/utils/config.util.js';
+import { taxHandler } from '../../src/controllers/tax.calculator.controller.js';
+import configUtil from '../../src/utils/config.util.js';
+import { HTTP_STATUS_BAD_REQUEST } from '../../src/constants/http.status.constants.js';
 
-describe('sync.controller.spec', () => {
+describe('tax-calculator.controller.spec', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -18,16 +17,13 @@ describe('sync.controller.spec', () => {
       scope: 'dummy-ctp-scope',
       region: 'dummy-ctp-region',
     };
-
-    sinon.stub(ConfigUtil, 'default').callsFake(() => {
+    sinon.stub(configUtil, 'readConfiguration').callsFake(() => {
       return dummyConfig;
     });
     const mockRequest = {
       method: 'POST',
       url: '/',
-      body: {
-        message: {},
-      },
+      body: {},
     };
     const mockResponse = {
       status: () => {
@@ -38,9 +34,9 @@ describe('sync.controller.spec', () => {
     };
     const responseStatusSpy = sinon.spy(mockResponse, 'status');
 
-    await syncHandler(mockRequest, mockResponse);
+    await taxHandler(mockRequest, mockResponse);
     expect(responseStatusSpy.firstCall.firstArg).toEqual(
-      HTTP_STATUS_SUCCESS_ACCEPTED
+      HTTP_STATUS_BAD_REQUEST
     );
   });
 });
