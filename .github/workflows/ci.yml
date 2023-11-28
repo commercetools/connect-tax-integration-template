@@ -12,6 +12,7 @@ jobs:
       CTP_PROJECT_KEY: ${{ secrets.CTP_PROJECT_KEY }}
       CTP_SCOPE: ${{ secrets.CTP_SCOPE }}
       CTP_REGION: ${{ secrets.CTP_REGION }}
+      TAX_PROVIDER_API_TOKEN: ${{ secrets.TAX_PROVIDER_API_TOKEN }}
     defaults:
       run:
         working-directory: tax-calculator
@@ -42,6 +43,7 @@ jobs:
       CTP_PROJECT_KEY: ${{ secrets.CTP_PROJECT_KEY }}
       CTP_SCOPE: ${{ secrets.CTP_SCOPE }}
       CTP_REGION: ${{ secrets.CTP_REGION }}
+      TAX_PROVIDER_API_TOKEN: ${{ secrets.TAX_PROVIDER_API_TOKEN }}
     defaults:
       run:
         working-directory: order-syncer

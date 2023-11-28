@@ -7,6 +7,7 @@ import {
   HTTP_STATUS_SUCCESS_ACCEPTED,
 } from '../constants/http.status.constants.js';
 import CustomError from '../errors/custom.error.js';
+import configUtils from '../utils/config.util.js';
 
 export const taxHandler = async (request, response) => {
   let calculation;
@@ -25,8 +26,7 @@ export const taxHandler = async (request, response) => {
 
   const taxRequest = mapCartRequestToTaxRequest(cartRequestBody);
   try {
-
-    const stripeInstance = new stripe('sk_test_51O0LZcHv2XDZJhXBlX6nug97JaQ4Xry6D809YqY3Jea5Ubs5DFgBwsmmjas6FOZwf9WVmZ4AUWJCDKGPc5iWPApA00MViLnZZf')
+    const stripeInstance = new stripe(configUtils.readConfiguration().stripeApiToken);
 
     calculation = await stripeInstance.tax.calculations.create(taxRequest);
   } catch (err) {

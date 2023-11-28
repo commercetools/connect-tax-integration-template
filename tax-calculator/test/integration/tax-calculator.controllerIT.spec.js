@@ -39,7 +39,7 @@ describe('Test tax-calculator.controller.js', () => {
         'resources/cartRequest.json'
     );
 
-    response = await request(server).post(`/taxCalculator`).send(carRequestPayload);
+    response = await request(server).post(`/taxCalculator`).send(cartRequestPayload);
 
     expect(response).toBeDefined();
     expect(response.statusCode).toEqual(HTTP_STATUS_SUCCESS_ACCEPTED);
