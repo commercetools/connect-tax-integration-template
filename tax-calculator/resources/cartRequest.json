@@ -1,0 +1,171 @@
+{
+  "type": "Cart",
+  "id": "5dacd609-f79d-4db5-8501-af12f28b8eda",
+  "version": 25,
+  "customerId": "e2ef189a-9aa4-47a5-b47b-e19a1e9d4d3b",
+  "locale": "en-US",
+  "lineItems": [
+    {
+      "id": "5e2c8458-74b3-47cc-a9eb-a9e88671f713",
+      "productId": "e4a679f3-e8f2-4b3d-bc51-2a48ae411794",
+      "name": {
+        "en-US": "SwiftTech RapidType Keyboard and Mouse Kit ",
+        "sv-SE": "SwiftTech RapidType Keyboard and Mouse Kit "
+      },
+      "productType": {
+        "typeId": "product-type",
+        "id": "ca1f3a54-e881-4878-8a92-59fb7b544a67",
+        "version": 16
+      },
+      "variant": {
+        "id": 1,
+        "sku": "SWIFT-RAPIDTYPE-KIT",
+        "prices": [
+          {
+            "id": "9fc634c5-88e8-4ede-b0b5-042474384f2c",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 6900,
+              "fractionDigits": 2
+            }
+          },
+          {
+            "id": "e4bf7cd2-3ad6-4103-b219-c381ec43b64a",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "SEK",
+              "centAmount": 69900,
+              "fractionDigits": 2
+            }
+          }
+        ],
+        "images": [],
+        "attributes": [],
+        "assets": [],
+        "availability": {
+          "isOnStock": true,
+          "availableQuantity": 300,
+          "version": 1,
+          "id": "992d6284-6f82-486f-ac4e-e4a689fc5142"
+        }
+      },
+      "price": {
+        "id": "9fc634c5-88e8-4ede-b0b5-042474384f2c",
+        "value": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 6900,
+          "fractionDigits": 2
+        }
+      },
+      "quantity": 5,
+      "discountedPricePerQuantity": [],
+      "perMethodTaxRate": [],
+      "priceMode": "Platform",
+      "lineItemMode": "Standard",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 34500,
+        "fractionDigits": 2
+      },
+      "taxedPricePortions": []
+    },
+    {
+      "id": "87838704-5aec-41ed-9147-7b9a20f45f18",
+      "productId": "3fe060ce-5aec-409b-81d1-12e5d8c961b3",
+      "name": {
+        "en-US": "Lenovo Ideapad 3 (2022) 15.6\" Laptop",
+        "sv-SE": "Lenovo Ideapad 3 (2022) 15.6\" Laptop"
+      },
+      "productType": {
+        "typeId": "product-type",
+        "id": "ca1f3a54-e881-4878-8a92-59fb7b544a67",
+        "version": 16
+      },
+      "variant": {
+        "id": 1,
+        "sku": "LENOVO-IDEAPAD3",
+        "prices": [
+          {
+            "id": "21c3cb15-b850-4ecf-8e71-5abd6689160a",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "USD",
+              "centAmount": 39500,
+              "fractionDigits": 2
+            }
+          },
+          {
+            "id": "40fc5d92-f9a7-434b-9da1-29f37b6f6233",
+            "value": {
+              "type": "centPrecision",
+              "currencyCode": "SEK",
+              "centAmount": 349500,
+              "fractionDigits": 2
+            }
+          }
+        ],
+        "images": [],
+        "attributes": [],
+        "assets": [],
+        "availability": {
+          "isOnStock": true,
+          "availableQuantity": 300,
+          "version": 1,
+          "id": "5114f296-b3a7-4171-b027-497740ebb253"
+        }
+      },
+      "price": {
+        "id": "21c3cb15-b850-4ecf-8e71-5abd6689160a",
+        "value": {
+          "type": "centPrecision",
+          "currencyCode": "USD",
+          "centAmount": 39500,
+          "fractionDigits": 2
+        }
+      },
+      "quantity": 2,
+      "discountedPricePerQuantity": [],
+      "perMethodTaxRate": [],
+      "priceMode": "Platform",
+      "lineItemMode": "Standard",
+      "totalPrice": {
+        "type": "centPrecision",
+        "currencyCode": "USD",
+        "centAmount": 79000,
+        "fractionDigits": 2
+      },
+      "taxedPricePortions": []
+    }
+  ],
+  "cartState": "Active",
+  "totalPrice": {
+    "type": "centPrecision",
+    "currencyCode": "USD",
+    "centAmount": 113500,
+    "fractionDigits": 2
+  },
+  "country": "US",
+  "shippingMode": "Single",
+  "shipping": [{
+    "postal_code": 12345,
+    "shippingAddress": {
+      "streetName": "testStreet"
+    }
+  }],
+  "customLineItems": [],
+  "discountCodes": [],
+  "directDiscounts": [],
+  "inventoryMode": "ReserveOnOrder",
+  "taxMode": "Platform",
+  "taxRoundingMode": "HalfEven",
+  "taxCalculationMode": "LineItemLevel",
+  "deleteDaysAfterLastModification": 90,
+  "refusedGifts": [],
+  "origin": "Customer",
+  "itemShippingAddresses": [],
+  "totalLineItemQuantity": 7
+}
+

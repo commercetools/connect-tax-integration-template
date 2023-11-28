@@ -2,6 +2,7 @@ import { expect, describe, afterAll, it } from '@jest/globals';
 import request from 'supertest';
 import server from '../../src/index.js';
 import {HTTP_STATUS_BAD_REQUEST, HTTP_STATUS_SUCCESS_ACCEPTED} from '../../src/constants/http.status.constants.js';
+import configUtils from "../../src/utils/config.util.js";
 /** Reminder : Please put mandatory environment variables in the settings of your github repository **/
 describe('Test tax-calculator.controller.js', () => {
   it(`When resource identifier is absent in URL, it should return 404 http status`, async () => {
@@ -30,6 +31,20 @@ describe('Test tax-calculator.controller.js', () => {
 
     expect(response).toBeDefined();
     expect(response.statusCode).toEqual(HTTP_STATUS_BAD_REQUEST);
+  });
+
+  it(`When payload body exists with correct cart information, it should returns calculated tax`, async () => {
+    let response = {};
+    const cartRequestPayload = await configUtils.readAndParseJsonFile(
+        'resources/cartRequest.json'
+    );
+
+    response = await request(server).post(`/taxCalculator`).send(carRequestPayload);
+
+    expect(response).toBeDefined();
+    expect(response.statusCode).toEqual(HTTP_STATUS_SUCCESS_ACCEPTED);
+    expect(response.body.amount_total).toEqual(cartRequestPayload.totalPrice.centAmount);
+    expect(response.body.tax_breakdown[0].taxability_reason).toEqual('not_collecting');
   });
 
   afterAll(() => {
