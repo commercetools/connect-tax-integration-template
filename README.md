@@ -13,10 +13,10 @@ This template uses the [Cart](https://docs.commercetools.com/api/projects/carts)
 
 ## Prerequisite
 #### 1. commercetools composable commerce API client
-Users are expected to create API client responsible for API extension creation as well as fetching cart and order details from composable commerce project, API client should have enough scope to be able to do so. These API client details are taken as input as an environment variable/ configuration for connect. Details of composable commerce project can be provided as environment variables (configuration for connect) `CTP_PROJECT_KEY` , `CTP_CLIENT_ID`, `CTP_CLIENT_SECRET`, `CTP_SCOPE`, `CTP_REGION`. For details, please read [Deployment Configuration](./README.md#Deployment Configuration).
+Users are expected to create API client responsible for API extension creation as well as fetching cart and order details from composable commerce project, API client should have enough scope to be able to do so. These API client details are taken as input as an environment variable/ configuration for connect. Details of composable commerce project can be provided as environment variables (configuration for connect) `CTP_PROJECT_KEY` , `CTP_CLIENT_ID`, `CTP_CLIENT_SECRET`, `CTP_SCOPE`, `CTP_REGION`. For details, please read [Deployment Configuration](./README.md#deployment-configuration).
 
 #### 2. external tax provider
-Users are expected to create api clients/ keys in external tax provider . Those details are taken as input as an environment variable / configuration for connect. API token to external tax provider can be provided as environment variables (configuration for connect) `TAX_PROVIDER_API_TOKEN`.For details, please read [Deployment Configuration](./README.md#Deployment Configuration).
+Users are expected to create api clients/ keys in external tax provider. Those details are taken as input as an environment variable / configuration for connect. API token to external tax provider can be provided as environment variables (configuration for connect) `TAX_PROVIDER_API_TOKEN`.For details, please read [Deployment Configuration](./README.md#deployment-configuration).
  
 ## Getting started
 The template contains two separated modules :
@@ -24,8 +24,8 @@ The template contains two separated modules :
 - Order Syncer : Receives message from commercetools project once there is an order created in commercetools store. The order and its corresponding cart details are then synchronized to the external tax provider for accounting and compliance purposes in addition to filing tax returns with tax authorities.
 
 Regarding the development of both modules, please refer to the following documentations:
-- Development of Tax Calculator
-- Development of Order Syncer
+- [Development of Tax Calculator](tax-calculator/README.md)
+- [Development of Order Syncer](order-syncer/README.md)
 
 #### 1. Develop your specific needs 
 To calculate tax amount by cart details and synchronize order details to external tax provider, users need to extend this connector with the following tasks
@@ -36,13 +36,13 @@ Follow guidelines [here](https://docs.commercetools.com/connect/getting-started)
 
 ## Deployment Configuration
 In order to deploy your customized connector application on commercetools Connect, it needs to be published. For details, please refer to [documentation about commercetools Connect](https://docs.commercetools.com/connect/concepts)
-In addition, in order to support connect, the search connector template has a folder structure as listed below
+In addition, in order to support connect, the tax integration connector template has a folder structure as listed below
 ```
-├── full-ingestion
+├── tax-calculator
 │   ├── src
 │   ├── test
 │   └── package.json
-├── incremental-updater
+├── order-syncer
 │   ├── src
 │   ├── test
 │   └── package.json
@@ -107,4 +107,4 @@ Here you can see the details about various variables in configuration
 
 ## Recommendations
 #### Implement your own test cases
-We have provided simple unit and integration test cases with [sinon](https://sinonjs.org/), [Jest](https://jestjs.io/) and [supertest](https://github.com/ladjs/supertest#readme). The implementation is under `test` folder in both `tax-calculator` and `order-syncer` modules. It is recommended to implement further test cases based on your own needs to test your development. 
+We have provided sample unit and integration test cases with [sinon](https://sinonjs.org/), [Jest](https://jestjs.io/) and [supertest](https://github.com/ladjs/supertest#readme). The implementation is under `test` folder in both `tax-calculator` and `order-syncer` modules. It is recommended to implement further test cases based on your own needs to test your development. 
