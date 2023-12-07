@@ -12,7 +12,9 @@
     "test": "npm run test:unit",
     "test:integration": "node_modules/.bin/jest --config test/integration/jest.config.cjs",
     "test:unit": "node_modules/.bin/jest --config test/unit/jest.config.cjs",
-    "test:ci": "npm run test:unit && npm run test:integration"
+    "test:ci": "npm run test:unit && npm run test:integration",
+    "connector:post-deploy": "node src/connectors/post-deploy.js",
+    "connector:pre-undeploy": "node src/connectors/pre-undeploy.js"
   },
   "author": "",
   "license": "MIT",
