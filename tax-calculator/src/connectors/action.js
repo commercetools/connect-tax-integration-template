@@ -1,19 +1,16 @@
 import _ from 'lodash';
 import { serializeError } from 'serialize-error';
-import configUtils from '../utils/config.util.js';
 import { logger } from '../utils/logger.utils.js';
+import extensionTemplate from "./../../resources/cartRequest.json" assert { type: 'json' };
 
 export async function createCTPExtension(
   apiRoot,
   ctpTaxCalculatorExtensionKey,
   ctpExtensionBaseUrl
 ) {
-  const apiExtensionTemplate = await configUtils.readAndParseJsonFile(
-    'resources/api-extension.json'
-  );
   try {
     const extensionDraft = JSON.parse(
-      _.template(JSON.stringify(apiExtensionTemplate))({
+      _.template(JSON.stringify(extensionTemplate))({
         ctpTaxCalculatorExtensionKey,
         ctpExtensionBaseUrl,
       })
@@ -21,13 +18,13 @@ export async function createCTPExtension(
 
     const existingExtension = await fetchExtensionByKey(
       apiRoot,
-      apiExtensionTemplate.key
+        extensionTemplate.key
     );
     if (existingExtension === null) {
       await apiRoot.create(apiRoot.builder.extensions, extensionDraft);
       logger.info(
         'Successfully created an API extension for payment resource type ' +
-          `(key=${apiExtensionTemplate.key})`
+          `(key=${extensionTemplate.key})`
       );
     } else {
       const actions = buildUpdateActions(existingExtension, extensionDraft);
@@ -40,13 +37,13 @@ export async function createCTPExtension(
         );
         logger.info(
           'Successfully updated the API extension for payment resource type ' +
-            `(key=${apiExtensionTemplate.key})`
+            `(key=${extensionTemplate.key})`
         );
       }
     }
   } catch (err) {
     throw Error(
-      `Failed to sync API extension (key=${apiExtensionTemplate.key}). ` +
+      `Failed to sync API extension (key=${extensionTemplate.key}). ` +
         `Error: ${JSON.stringify(serializeError(err))}`
     );
   }
