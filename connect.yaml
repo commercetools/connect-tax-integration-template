@@ -1,7 +1,7 @@
 deployAs:
   - name: tax-calculator
     applicationType: service
-    endpoint: /
+    endpoint: /taxCalculator
     scripts:
       postDeploy: npm install && npm run connector:post-deploy
       preUndeploy: npm install && npm run connector:pre-undeploy
