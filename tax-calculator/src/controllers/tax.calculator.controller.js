@@ -13,6 +13,7 @@ import { createApiRoot } from "../clients/create.client.js";
 export const taxHandler = async (request, response) => {
     let calculation;
 
+    logger.info(`request body: ${request.body}`);
     const cartRequestBody = request.body;
     if (_.isEmpty(cartRequestBody)) {
         return response
@@ -26,6 +27,7 @@ export const taxHandler = async (request, response) => {
     }
 
     const taxRequest = mapCartRequestToTaxRequest(cartRequestBody);
+    logger.info(`tax request: ${taxRequest}`);
     try {
         const stripeInstance = new stripe(configUtils.readConfiguration().stripeApiToken);
 
@@ -42,11 +44,14 @@ export const taxHandler = async (request, response) => {
 };
 
 function mapCartRequestToTaxRequest(cartRequest) {
+
+    logger.info(`cart update request: ${cartRequest}`);
     let taxRequest = {customer_details: {address: {}}, line_items: []};
 
     taxRequest.currency = cartRequest.totalPrice?.currencyCode;
     taxRequest.customer_details.address.country = cartRequest.country;
 
+    logger.info(`cart shippingMode: ${cartRequest.shippingMode}`);
     let cartShippingAddress = {};
     if(cartRequest.shippingMode === 'Single'){
         cartShippingAddress = cartRequest.shippingAddress;
