@@ -44,12 +44,17 @@ export const taxHandler = async (request, response) => {
 function mapCartRequestToTaxRequest(cartRequest) {
     let taxRequest = {customer_details: {address: {}}, line_items: []};
 
-    taxRequest.currency = cartRequest.totalPrice.currencyCode;
+    taxRequest.currency = cartRequest.totalPrice?.currencyCode;
     taxRequest.customer_details.address.country = cartRequest.country;
 
-    const cartShippingAddress = cartRequest.shipping[0];
-    taxRequest.customer_details.address.postal_code = cartShippingAddress?.postal_code ? cartShippingAddress.postal_code : 12345;
-    taxRequest.customer_details.address.line1 = cartShippingAddress?.shippingAddress.streetName;
+    let cartShippingAddress = {};
+    if(cartRequest.shippingMode === 'Single'){
+        cartShippingAddress = cartRequest.shippingAddress;
+    } else {
+        cartShippingAddress = cartRequest.shipping[0]?.shippingAddress;
+    }
+    taxRequest.customer_details.address.postal_code = cartShippingAddress.postal_code;
+    taxRequest.customer_details.address.line1 = cartShippingAddress.streetName;
     taxRequest.customer_details.address_source = 'shipping';
 
     for (const cartLineItem of cartRequest.lineItems) {
