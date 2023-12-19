@@ -13,7 +13,7 @@ import { createApiRoot } from "../clients/create.client.js";
 export const taxHandler = async (request, response) => {
     let calculation;
 
-    logger.info(`request body: ${request.body}`);
+    logger.info(`request body: ${JSON.stringify(request.body)}`);
     const cartRequestBody = request.body;
     if (_.isEmpty(cartRequestBody)) {
         return response
