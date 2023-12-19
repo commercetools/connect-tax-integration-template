@@ -14,7 +14,7 @@ export const taxHandler = async (request, response) => {
     let calculation;
 
     logger.info(`request body: ${JSON.stringify(request.body)}`);
-    const cartRequestBody = request.body;
+    const cartRequestBody = request.body?.resource?.obj;
     if (_.isEmpty(cartRequestBody)) {
         return response
             .status(HTTP_STATUS_BAD_REQUEST)
@@ -45,13 +45,12 @@ export const taxHandler = async (request, response) => {
 
 function mapCartRequestToTaxRequest(cartRequest) {
 
-    logger.info(`cart update request: ${cartRequest}`);
+    logger.info(`cart update request resource: ${cartRequest}`);
     let taxRequest = {customer_details: {address: {}}, line_items: []};
 
     taxRequest.currency = cartRequest.totalPrice?.currencyCode;
     taxRequest.customer_details.address.country = cartRequest.country;
 
-    logger.info(`cart shippingMode: ${cartRequest.shippingMode}`);
     let cartShippingAddress = {};
     if(cartRequest.shippingMode === 'Single'){
         cartShippingAddress = cartRequest.shippingAddress;
