@@ -36,7 +36,7 @@ describe('Test tax-calculator.controller.js', () => {
   });
 
   // Disabled because test needs Environment variables
-  xit(`When payload body exists with correct cart information, it should returns calculated tax`, async () => {
+  it(`When payload body exists with correct cart information, it should returns calculated tax`, async () => {
     let response = {};
 
     response = await request(server).post(`/taxCalculator`).send(cartRequestPayload);
@@ -50,11 +50,11 @@ describe('Test tax-calculator.controller.js', () => {
 
 
   // Disabled because Needs Environment variables and update the cartId from your CTP project
-  xit(`Test against CTP Project`, async () => {
+  it(`Test against CTP Project`, async () => {
     let response = {};
     const {  body: cartRequestPayload } = await createApiRoot()
         .carts()
-        .withId({ID: '113e3059-9d5b-4a64-887d-b3cf18499438'})
+        .withId({ID: 'a29b2d3d-42a4-444d-8666-3b385e9a967c'})
         .get()
         .execute();
 
