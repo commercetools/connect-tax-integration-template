@@ -1,44 +1,64 @@
 {
-  "country": "DE",
-  "currency": "EUR",
-  "key": "stripe-tax-calculator-cart-1",
-  "locale": "en-US",
-  "lineItems": [
-    {
-      "key": "stripe-tax-calculator-lineItem-1",
-      "name": {
-        "en-US": "SwiftTech RapidType Keyboard and Mouse Kit "
-      },
-      "productId": "06819bff-c8d1-4a2b-93f6-47c3ac6d4202",
-      "variantId": 1,
-      "quantity": 1,
+  "resource": {
+    "obj": {
+      "id": "id_1232123",
+      "country": "DE",
+      "currency": "EUR",
+      "key": "stripe-tax-calculator-cart-1",
+      "locale": "en-US",
+      "lineItems": [
+        {
+          "id": "stripe-tax-calculator-lineItem-1",
+          "name": {
+            "en-US": "SwiftTech RapidType Keyboard and Mouse Kit "
+          },
+          "productId": "06819bff-c8d1-4a2b-93f6-47c3ac6d4202",
+          "variantId": 1,
+          "quantity": 1,
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "EUR",
+            "centAmount": 34500,
+            "fractionDigits": 2
+          }
+        },
+        {
+          "id": "stripe-tax-calculator-lineItem-2",
+          "name": {
+            "en-US": "SwiftTech RapidType Keyboard and Mouse Kit "
+          },
+          "productId": "2b13d4d1-6cf1-4707-9977-eeaf3de9829f",
+          "variantId": 1,
+          "quantity": 2,
+          "totalPrice": {
+            "type": "centPrecision",
+            "currencyCode": "EUR",
+            "centAmount": 45000,
+            "fractionDigits": 2
+          }
+        }
+      ],
       "totalPrice": {
         "type": "centPrecision",
         "currencyCode": "EUR",
-        "centAmount": 34500,
+        "centAmount": 113500,
         "fractionDigits": 2
-      }
+      },
+      "shippingMode": "Single",
+      "shippingAddress": {
+        "country": "DE",
+        "streetName": "testStreet",
+        "postal_code": "12345"
+      },
+      "customLineItems": [],
+      "discountCodes": [],
+      "directDiscounts": [],
+      "inventoryMode": "ReserveOnOrder",
+      "taxMode": "ExternalAmount",
+      "taxRoundingMode": "HalfEven",
+      "taxCalculationMode": "LineItemLevel",
+      "deleteDaysAfterLastModification": 90,
+      "origin": "Customer"
     }
-  ],
-  "totalPrice": {
-    "type": "centPrecision",
-    "currencyCode": "EUR",
-    "centAmount": 113500,
-    "fractionDigits": 2
-  },
-  "shippingMode": "Single",
-  "shippingAddress": {
-    "country": "DE",
-    "streetName": "testStreet",
-    "postal_code": "12345"
-  },
-  "customLineItems": [],
-  "discountCodes": [],
-  "directDiscounts": [],
-  "inventoryMode": "ReserveOnOrder",
-  "taxMode": "Platform",
-  "taxRoundingMode": "HalfEven",
-  "taxCalculationMode": "LineItemLevel",
-  "deleteDaysAfterLastModification": 90,
-  "origin": "Customer"
+  }
 }
