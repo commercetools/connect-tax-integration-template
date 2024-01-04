@@ -39,7 +39,7 @@ export const taxHandler = async (request, response) => {
     }
 
     return response.status(HTTP_STATUS_SUCCESS_ACCEPTED).send(
-        { actions: `${actionItems}` }
+        { actions: actionItems }
     );
 };
 
