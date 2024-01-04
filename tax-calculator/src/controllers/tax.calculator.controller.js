@@ -70,7 +70,7 @@ async function addUpdateCartLineItems(cartId, calculation) {
                 },
                 taxRate: {
                     name: taxRateDetails?.tax_type,
-                    amount: taxRateDetails?.percentage_decimal,
+                    amount: parseFloat(taxRateDetails?.percentage_decimal),
                     country: taxRateDetails?.country
                 }
             }
