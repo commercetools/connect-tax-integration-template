@@ -35,22 +35,21 @@ describe('Test tax-calculator.controller.js', () => {
     expect(response.statusCode).toEqual(HTTP_STATUS_BAD_REQUEST);
   });
 
-  // Disabled because test needs Environment variables
-  it(`When payload body exists with correct cart information, it should returns calculated tax`, async () => {
+  it(`When payload body exists with correct cart information, 
+                it should returns actionItems to update the cart`, async () => {
     let response = {};
 
     response = await request(server).post(`/taxCalculator`).send(cartRequestPayload);
 
     expect(response).toBeDefined();
     expect(response.statusCode).toEqual(HTTP_STATUS_SUCCESS_ACCEPTED);
-    expect(response.body.amount_total).toEqual(cartRequestPayload.totalPrice.centAmount);
-    expect(response.body.tax_breakdown[0].taxability_reason).toEqual('not_collecting');
+    expect(response.body.actions).toBeDefined();
   });
 
 
 
   // Disabled because Needs Environment variables and update the cartId from your CTP project
-  it(`Test against CTP Project`, async () => {
+  xit(`Test against CTP Project`, async () => {
     let response = {};
     const {  body: cartRequestPayload } = await createApiRoot()
         .carts()

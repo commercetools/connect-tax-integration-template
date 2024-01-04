@@ -26,7 +26,6 @@ export const taxHandler = async (request, response) => {
     }
 
     const taxRequest = mapCartRequestToTaxRequest(cartRequestBody);
-    logger.info(`tax request: ${taxRequest}`);
     let actionItems;
     try {
         const stripeInstance = new stripe(configUtils.readConfiguration().stripeApiToken);
@@ -82,8 +81,6 @@ async function addUpdateCartLineItems(cartId, calculation) {
 }
 
 function mapCartRequestToTaxRequest(cartRequest) {
-
-    logger.info(`cart update request resource: ${cartRequest}`);
     let taxRequest = {customer_details: {address: {}}, line_items: []};
 
     taxRequest.currency = cartRequest.totalPrice?.currencyCode;
