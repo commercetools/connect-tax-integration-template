@@ -7,10 +7,21 @@ export async function createType(apiRoot, ctpTaxTypeKey) {
       en: 'Tax transaction',
     },
     description: {
-      en: 'Additional field to store tax transaction from Stripe',
+      en: 'Additional field to store tax result from Stripe',
     },
     resourceTypeIds: ['order'],
     fieldDefinitions: [
+      {
+        name: 'taxCalculationReference',
+        label: {
+          en: 'Tax Calculation Reference',
+        },
+        required: false,
+        type: {
+          name: 'String',
+        },
+        inputHint: 'SingleLine',
+      },
       {
         name: 'taxTransactionReference',
         label: {
