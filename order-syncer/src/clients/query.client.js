@@ -19,3 +19,17 @@ export async function getCartByOrderId(orderId) {
       throw new CustomError(HTTP_STATUS_SUCCESS_ACCEPTED, error.message, error);
     });
 }
+
+export async function getOrder(orderId) {
+  return await createApiRoot()
+    .orders()
+    .withId({
+      ID: Buffer.from(orderId).toString(),
+    })
+    .get()
+    .execute()
+    .then((response) => response.body)
+    .catch((error) => {
+      throw new CustomError(HTTP_STATUS_SUCCESS_ACCEPTED, error.message, error);
+    });
+}

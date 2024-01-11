@@ -1,6 +1,12 @@
 import CustomError from '../errors/custom.error.js';
-import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../constants/http.status.constants.js';
-import { MESSAGE_TYPE } from '../constants/connectors.constants.js';
+import {
+  HTTP_STATUS_SUCCESS_ACCEPTED,
+  HTTP_STATUS_SUCCESS_NO_CONTENT,
+} from '../constants/http.status.constants.js';
+import {
+  MESSAGE_TYPE,
+  NOTIFICATION_TYPE_RESOURCE_CREATED,
+} from '../constants/connectors.constants.js';
 
 export function doValidation(messageBody) {
   if (!messageBody) {
@@ -11,6 +17,13 @@ export function doValidation(messageBody) {
   }
 
   // Make sure incoming message contains correct notification type
+  if (NOTIFICATION_TYPE_RESOURCE_CREATED === messageBody.notificationType) {
+    throw new CustomError(
+      HTTP_STATUS_SUCCESS_NO_CONTENT,
+      `Incoming message is about subscription resource creation. Skip handling the message`
+    );
+  }
+
   if (!MESSAGE_TYPE.includes(messageBody.type)) {
     throw new CustomError(
       HTTP_STATUS_SUCCESS_ACCEPTED,
