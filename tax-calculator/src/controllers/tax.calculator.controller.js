@@ -6,9 +6,11 @@ import {
     HTTP_STATUS_SERVER_ERROR,
     HTTP_STATUS_SUCCESS_ACCEPTED,
 } from '../constants/http.status.constants.js';
-import { CTP_TYPE_TAX_TXN_KEY } from '../constants/connectors.constants.js';
+
 import CustomError from '../errors/custom.error.js';
 import configUtils from '../utils/config.util.js';
+
+const CTP_TYPE_TAX_TXN_KEY = 'stripe-tax';
 
 export const taxHandler = async (request, response) => {
     let calculation;
