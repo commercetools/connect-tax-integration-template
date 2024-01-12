@@ -10,7 +10,7 @@ export async function getCartByOrderId(orderId) {
   return await createApiRoot()
     .orders()
     .withId({
-      ID: Buffer.from(orderId).toString(),
+      ID: orderId,
     })
     .get({ queryArgs })
     .execute()
@@ -24,7 +24,7 @@ export async function getOrder(orderId) {
   return await createApiRoot()
     .orders()
     .withId({
-      ID: Buffer.from(orderId).toString(),
+      ID: orderId,
     })
     .get()
     .execute()
