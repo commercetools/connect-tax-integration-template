@@ -6,7 +6,7 @@ export async function updateOrder(actions, order) {
   return await createApiRoot()
     .orders()
     .withId({
-      ID: Buffer.from(order.id).toString(),
+      ID: order.id,
     })
     .post({
       body: {
