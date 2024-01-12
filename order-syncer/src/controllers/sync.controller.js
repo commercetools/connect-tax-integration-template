@@ -2,7 +2,7 @@ import { logger } from '../utils/logger.util.js';
 import { doValidation } from '../validators/order-change.validators.js';
 import { decodeToJson } from '../utils/decoder.util.js';
 import { getCartByOrderId } from '../clients/query.client.js';
-import { updateOrder } from '../clients/update.client.js';
+import { updateOrderTaxTxn } from '../clients/update.client.js';
 import {
   HTTP_STATUS_SUCCESS_NO_CONTENT,
   HTTP_STATUS_SERVER_ERROR,
@@ -28,13 +28,7 @@ async function syncToTaxProvider(orderId, cart) {
   );
 
   if (taxTxnId) {
-    let actions = [];
-    actions.push({
-      action: 'setCustomField',
-      name: 'taxTransactionReference',
-      value: taxTxnId,
-    });
-    await updateOrder(actions, orderId);
+    await updateOrderTaxTxn(taxTxnId, orderId);
   }
 }
 
