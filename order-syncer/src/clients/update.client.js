@@ -1,8 +1,10 @@
 import { createApiRoot } from './create.client.js';
 import CustomError from '../errors/custom.error.js';
 import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../constants/http.status.constants.js';
+import { getOrder } from './query.client.js';
 
-export async function updateOrder(actions, order) {
+export async function updateOrder(actions, orderId) {
+  const order = await getOrder(orderId);
   return await createApiRoot()
     .orders()
     .withId({
