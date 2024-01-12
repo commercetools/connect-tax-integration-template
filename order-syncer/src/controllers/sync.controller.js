@@ -2,6 +2,7 @@ import { logger } from '../utils/logger.util.js';
 import { doValidation } from '../validators/order-change.validators.js';
 import { decodeToJson } from '../utils/decoder.util.js';
 import { getCartByOrderId } from '../clients/query.client.js';
+import { updateOrderTaxTxn } from '../clients/update.client.js';
 import {
   HTTP_STATUS_SUCCESS_NO_CONTENT,
   HTTP_STATUS_SERVER_ERROR,
@@ -11,13 +12,24 @@ import createTaxTransaction from '../extensions/stripe/clients/client.js';
 import CustomError from '../errors/custom.error.js';
 
 async function syncToTaxProvider(orderId, cart) {
-  await createTaxTransaction(orderId, cart).catch((error) => {
-    throw new CustomError(
+  const createTaxTxnResponse = await createTaxTransaction(orderId, cart).catch(
+    (error) => {
+      throw new CustomError(
         HTTP_STATUS_SUCCESS_ACCEPTED,
         `Error from extension : ${error.message}`,
         error
-    );
-  });
+      );
+    }
+  );
+
+  const taxTxnId = createTaxTxnResponse.id;
+  logger.info(
+    `Tax transaction ID from Stripe of order ${orderId} : ${taxTxnId}`
+  );
+
+  if (taxTxnId) {
+    await updateOrderTaxTxn(taxTxnId, orderId);
+  }
 }
 
 export const syncHandler = async (request, response) => {

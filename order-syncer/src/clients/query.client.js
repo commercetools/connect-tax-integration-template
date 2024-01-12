@@ -10,11 +10,25 @@ export async function getCartByOrderId(orderId) {
   return await createApiRoot()
     .orders()
     .withId({
-      ID: Buffer.from(orderId).toString(),
+      ID: orderId,
     })
     .get({ queryArgs })
     .execute()
     .then((response) => response.body?.cart.obj)
+    .catch((error) => {
+      throw new CustomError(HTTP_STATUS_SUCCESS_ACCEPTED, error.message, error);
+    });
+}
+
+export async function getOrder(orderId) {
+  return await createApiRoot()
+    .orders()
+    .withId({
+      ID: orderId,
+    })
+    .get()
+    .execute()
+    .then((response) => response.body)
     .catch((error) => {
       throw new CustomError(HTTP_STATUS_SUCCESS_ACCEPTED, error.message, error);
     });

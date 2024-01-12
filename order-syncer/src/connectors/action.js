@@ -1,5 +1,61 @@
 import { MESSAGE_TYPE } from '../constants/connectors.constants.js';
 
+export async function createType(apiRoot, ctpTaxTypeKey) {
+  const body = {
+    key: `${ctpTaxTypeKey}`,
+    name: {
+      en: 'Tax transaction',
+    },
+    description: {
+      en: 'Additional field to store tax result from Stripe',
+    },
+    resourceTypeIds: ['order'],
+    fieldDefinitions: [
+      {
+        name: 'taxCalculationReference',
+        label: {
+          en: 'Tax Calculation Reference',
+        },
+        required: false,
+        type: {
+          name: 'String',
+        },
+        inputHint: 'SingleLine',
+      },
+      {
+        name: 'taxTransactionReference',
+        label: {
+          en: 'Tax Transaction Reference',
+        },
+        required: false,
+        type: {
+          name: 'String',
+        },
+        inputHint: 'SingleLine',
+      },
+    ],
+  };
+
+  const {
+    body: { results: types },
+  } = await apiRoot
+    .types()
+    .get({
+      queryArgs: {
+        where: `key = "${ctpTaxTypeKey}"`,
+      },
+    })
+    .execute();
+  if (types && types.length === 0) {
+    await apiRoot
+      .types()
+      .post({
+        body,
+      })
+      .execute();
+  }
+}
+
 export async function deleteChangedOrderSubscription(
   apiRoot,
   ctpOrderChangeSubscriptionKey

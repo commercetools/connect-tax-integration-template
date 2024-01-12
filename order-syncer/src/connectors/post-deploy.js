@@ -1,6 +1,9 @@
 import { createApiRoot } from '../clients/create.client.js';
-import { createChangedOrderSubscription } from './action.js';
-import { CTP_ORDER_CHANGE_SUBSCRIPTION_KEY } from '../constants/connectors.constants.js';
+import { createChangedOrderSubscription, createType } from './action.js';
+import {
+  CTP_ORDER_CHANGE_SUBSCRIPTION_KEY,
+  CTP_TYPE_TAX_TXN_KEY,
+} from '../constants/connectors.constants.js';
 const CONNECT_GCP_TOPIC_NAME_KEY = 'CONNECT_GCP_TOPIC_NAME';
 const CONNECT_GCP_PROJECT_ID_KEY = 'CONNECT_GCP_PROJECT_ID';
 
@@ -15,6 +18,7 @@ async function postDeploy(properties) {
     projectId,
     CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
   );
+  await createType(apiRoot, CTP_TYPE_TAX_TXN_KEY);
 }
 
 async function run() {
