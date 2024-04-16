@@ -12,7 +12,7 @@ This template uses the [Cart](https://docs.commercetools.com/api/projects/carts)
 - Setup sample unit and integration tests with [sinon](https://sinonjs.org/), [Jest](https://jestjs.io/) and [supertest](https://github.com/ladjs/supertest#readme)
 
 ## Prerequisite
-#### 1. Commercetools composable commerce API client
+#### 1. commercetools composable commerce API client
 Users are expected to create API client responsible for API extension creation as well as fetching cart and order details from composable commerce project, API client should have enough scope to be able to do so. These API client details are taken as input as an environment variable/ configuration for connect. Details of composable commerce project can be provided as environment variables (configuration for connect) `CTP_PROJECT_KEY` , `CTP_CLIENT_ID`, `CTP_CLIENT_SECRET`, `CTP_SCOPE`, `CTP_REGION`. For details, please read [Deployment Configuration](./README.md#deployment-configuration).
 
 #### 2. External tax provider
