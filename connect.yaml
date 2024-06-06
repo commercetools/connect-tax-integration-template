@@ -1,7 +1,7 @@
 deployAs:
   - name: tax-calculator
     applicationType: service
-    endpoint: /taxCalculator
+    endpoint: /
     scripts:
       postDeploy: npm install
     configuration:
