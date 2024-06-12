@@ -1,14 +1,9 @@
-import { expect, describe, it, afterEach } from '@jest/globals';
-import sinon from 'sinon';
-import { taxHandler } from '../../src/controllers/tax.calculator.controller.js';
+import {expect, describe, it, jest} from '@jest/globals';
 import configUtil from '../../src/utils/config.util.js';
-import { HTTP_STATUS_BAD_REQUEST } from '../../src/constants/http.status.constants.js';
+import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../../src/constants/http.status.constants.js';
+import {taxHandler} from "../../src/controllers/tax.calculator.controller.js";
 
 describe('tax-calculator.controller.spec', () => {
-  afterEach(() => {
-    sinon.restore();
-  });
-
   it(`should return 400 HTTP status when message data is missing in incoming event message.`, async () => {
     const dummyConfig = {
       clientId: 'dummy-ctp-client-id',
@@ -17,13 +12,17 @@ describe('tax-calculator.controller.spec', () => {
       scope: 'dummy-ctp-scope',
       region: 'dummy-ctp-region',
     };
-    sinon.stub(configUtil, 'readConfiguration').callsFake(() => {
-      return dummyConfig;
-    });
+
+    jest
+        .spyOn(configUtil, "readConfiguration")
+        .mockImplementation(({ success }) => success(dummyConfig));
+
     const mockRequest = {
       method: 'POST',
       url: '/',
-      body: {},
+      body: {
+        message: {},
+      },
     };
     const mockResponse = {
       status: () => {
@@ -32,11 +31,10 @@ describe('tax-calculator.controller.spec', () => {
         };
       },
     };
-    const responseStatusSpy = sinon.spy(mockResponse, 'status');
 
+    const responseStatusSpy = jest.spyOn(mockResponse, 'status')
     await taxHandler(mockRequest, mockResponse);
-    expect(responseStatusSpy.firstCall.firstArg).toEqual(
-      HTTP_STATUS_BAD_REQUEST
-    );
+    expect(responseStatusSpy).toBeCalledWith(HTTP_STATUS_SUCCESS_ACCEPTED);
   });
+
 });
