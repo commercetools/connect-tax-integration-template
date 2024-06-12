@@ -1,6 +1,8 @@
 import {expect, describe, it, jest} from '@jest/globals';
 import {HTTP_STATUS_SUCCESS_ACCEPTED} from '../../src/constants/http.status.constants.js';
 import {syncHandler} from "../../src/controllers/sync.controller.js";
+import readConfiguration from "../../src/utils/config.util.js";
+import * as ConfigUtil from '../../src/utils/config.util.js';
 
 describe('sync.controller.spec', () => {
   it(`should return 400 HTTP status when message data is missing in incoming event message.`, async () => {
@@ -13,7 +15,7 @@ describe('sync.controller.spec', () => {
     };
 
     jest
-        .spyOn(dummyConfig, "default")
+        .spyOn(ConfigUtil, "default")
         .mockImplementation(({ success }) => success(dummyConfig));
 
     const mockRequest = {
