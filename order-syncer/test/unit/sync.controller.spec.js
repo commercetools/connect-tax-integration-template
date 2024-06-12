@@ -1,15 +1,10 @@
-import { expect, describe, it, afterEach } from '@jest/globals';
-
-import sinon from 'sinon';
-import { syncHandler } from '../../src/controllers/sync.controller.js';
-import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../../src/constants/http.status.constants.js';
+import {expect, describe, it, jest} from '@jest/globals';
+import {HTTP_STATUS_SUCCESS_ACCEPTED} from '../../src/constants/http.status.constants.js';
+import {syncHandler} from "../../src/controllers/sync.controller.js";
+import readConfiguration from "../../src/utils/config.util.js";
 import * as ConfigUtil from '../../src/utils/config.util.js';
 
 describe('sync.controller.spec', () => {
-  afterEach(() => {
-    sinon.restore();
-  });
-
   it(`should return 400 HTTP status when message data is missing in incoming event message.`, async () => {
     const dummyConfig = {
       clientId: 'dummy-ctp-client-id',
@@ -19,9 +14,10 @@ describe('sync.controller.spec', () => {
       region: 'dummy-ctp-region',
     };
 
-    sinon.stub(ConfigUtil, 'default').callsFake(() => {
-      return dummyConfig;
-    });
+    jest
+        .spyOn(ConfigUtil, "default")
+        .mockImplementation(({ success }) => success(dummyConfig));
+
     const mockRequest = {
       method: 'POST',
       url: '/',
@@ -36,11 +32,10 @@ describe('sync.controller.spec', () => {
         };
       },
     };
-    const responseStatusSpy = sinon.spy(mockResponse, 'status');
 
+    const responseStatusSpy = jest.spyOn(mockResponse, 'status')
     await syncHandler(mockRequest, mockResponse);
-    expect(responseStatusSpy.firstCall.firstArg).toEqual(
-      HTTP_STATUS_SUCCESS_ACCEPTED
-    );
+    expect(responseStatusSpy).toBeCalledWith(HTTP_STATUS_SUCCESS_ACCEPTED);
+
   });
 });
