@@ -57,7 +57,8 @@ jobs:
       - name: Install modules
         run: npm ci
 
-      
+      - name: Check the coding style
+        run: npm run lint && npm run prettier
 
       - name: Execute tests
         run: npm run test:ci
