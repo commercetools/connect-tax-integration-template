@@ -16,11 +16,6 @@ export default function readConfiguration() {
     scope: process.env.CTP_SCOPE,
     region: process.env.CTP_REGION,
   };
-  console.log(envVars.clientId===undefined)
-  console.log(envVars.clientSecret===undefined)
-  console.log(envVars.projectKey===undefined)
-  console.log(envVars.scope===undefined)
-  console.log(envVars.region===undefined)
 
   const validationErrors = getValidateMessages(envValidators, envVars);
 
