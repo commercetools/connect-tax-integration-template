@@ -1,46 +1,29 @@
-# -*- mode: yaml -*-
-# +----------------------------------------------------------------------------+
-# | /:\ gitStream: Workflow automation for the code review process.            |
-# +----------------------------------------------------------------------------+
-# | This file contains one or more /:\ gitStream automations:                  |
-# | https:// docs.gitstream.cm                                                 |
-# |                                                                            |
-# | gitStream uses YAML syntax with nunjucks templating via Jinja 2.           |
-# |                                                                            |
-# | Automations follow an "if this, then that" execution format.               |
-# | More info here: https://docs.gitstream.cm/how-it-works/                    |
-# |                                                                            |
-# +----------------------------------------------------------------------------+
-
-# /:\ gitStream Reference Docs: 
-#    Context Variables: https://docs.gitstream.cm/context-variables/
-#    Filter Functions: https://docs.gitstream.cm/filter-functions/
-#    Automation Actions: https://docs.gitstream.cm/automation-actions/
-
 manifest:
   version: 1.0
 
-# +----------------------------------------------------------------------------+
-# | Automations
-# +----------------------------------------------------------------------------+
-
 automations:
-  small_change:
+  merge_dependabot_minor:
     if:
-      - {{ files | allDocs }}
+      - {{ bump == 'minor' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
     run:
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            Dependabot `minor` version bumps are approved automatically.
+  merge_dependabot_minor_patch:
+    if:
+      - {{ bump == 'patch' }}
+      - {{ branch.name | includes(term="dependabot") }}
+      - {{ branch.author | includes(term="dependabot") }}
+    run:
+      - action: approve@v1
       - action: merge@v1
+      - action: add-comment@v1
         args:
-          wait_for_all_checks: true
-          squash_on_merge: true
+          comment: |
+            Dependabot `patch` version bumps are approved and merged automatically.
 
-  # Flag PRs that are missing a Jira ticket reference in the title or description.
-  # https://docs.gitstream.cm/integrations/jira/
-  label_missing_jira_info:
-    if:
-      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
-    run:
-      - action: add-label@v1
-        args:
-          label: "missing-jira"
-          color: {{ colors.red }}
+bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}
