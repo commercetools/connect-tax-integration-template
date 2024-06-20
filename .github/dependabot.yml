@@ -1,0 +1,7 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/tax-calculator"
+    schedule:
+      interval: "daily"
+    target-branch: "dependabot-automerge"
