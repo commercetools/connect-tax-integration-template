@@ -32,3 +32,5 @@ automations:
       - action: merge@v1
         args:
           squash_on_merge: true
+          comment: |
+                      git stream to merge the PR automatically.
