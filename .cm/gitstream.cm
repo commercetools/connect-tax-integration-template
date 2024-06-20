@@ -32,3 +32,15 @@ automations:
       - action: merge@v1
         args:
           squash_on_merge: true
+          wait_for_all_checks: true
+
+  # Flag PRs that are missing a Jira ticket reference in the title or description.
+  # https://docs.gitstream.cm/integrations/jira/
+  label_missing_jira_info:
+    if:
+      - {{ not (has.jira_ticket_in_title or has.jira_ticket_in_desc) }}
+    run:
+      - action: add-label@v1
+        args:
+          label: "missing-jira"
+          color: {{ colors.red }}
