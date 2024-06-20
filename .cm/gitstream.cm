@@ -27,7 +27,7 @@ manifest:
 automations:
   small_change:
     if:
-      - {{ files | allDocs }}
+      - true
     run:
       - action: merge@v1
         args:
