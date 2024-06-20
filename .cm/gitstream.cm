@@ -31,8 +31,8 @@ automations:
     run:
       - action: merge@v1
         args:
-          squash_on_merge: true
           wait_for_all_checks: true
+          squash_on_merge: true
 
   # Flag PRs that are missing a Jira ticket reference in the title or description.
   # https://docs.gitstream.cm/integrations/jira/
