@@ -4,4 +4,3 @@ updates:
     directory: "/tax-calculator"
     schedule:
       interval: "daily"
-    target-branch: "dependabot-automerge"
