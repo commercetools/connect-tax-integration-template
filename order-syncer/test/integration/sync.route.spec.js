@@ -24,7 +24,8 @@ describe('Test sync.route.js', () => {
     expect(response.statusCode).toEqual(HTTP_STATUS_SUCCESS_ACCEPTED);
   });
 
-  it(`When payload body exists without correct order ID, it should returns 202 http status`, async () => {
+  // This test needs Environment variables to be set
+  xit(`When payload body exists without correct order ID, it should returns 202 http status`, async () => {
     let response = {};
     // Send request to the connector application with following code snippet.
     // Following incoming message data is an example. Please define incoming message based on resources identifer in your own Commercetools project

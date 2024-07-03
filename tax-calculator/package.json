@@ -38,7 +38,7 @@
     "mocha": "^10.2.0",
     "serialize-error": "^11.0.2",
     "stripe": "^14.3.0",
-    "supertest": "^6.3.3",
+    "supertest": "^7.0.0",
     "validator": "^13.11.0"
   }
 }
