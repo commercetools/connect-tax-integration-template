@@ -22,7 +22,7 @@
     "babel-jest": "^29.6.2",
     "eslint": "^8.46.0",
     "nodemon": "^3.1.4",
-    "prettier": "^2.8.8"
+    "prettier": "^3.3.2"
   },
   "dependencies": {
     "@commercetools-backend/loggers": "^21.19.0",
