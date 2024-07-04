@@ -4,7 +4,8 @@ manifest:
 automations:
   merge_dependabot_minor_patch:
     if:
-      - {{ bump == 'patch' | bump == 'minor' }}
+      - {{ bump == 'patch' }}
+      - {{ bump == 'minor' }}
       - {{ branch.name | includes(term="dependabot") }}
       - {{ branch.author | includes(term="dependabot") }}
     run:
