@@ -13,6 +13,6 @@ automations:
       - action: add-comment@v1
         args:
           comment: |
-            Dependabot `patch` version bumps are approved and merged automatically.
+            Dependabot `minor and patch` version bumps are approved and merged automatically.
 
 bump: {{ pr.description | extractDependabotVersionBump | compareSemver }}
