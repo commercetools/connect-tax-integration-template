@@ -37,7 +37,7 @@
     "lodash": "^4.17.21",
     "mocha": "^10.6.0",
     "serialize-error": "^11.0.2",
-    "stripe": "^16.1.0",
+    "stripe": "^16.2.0",
     "supertest": "^7.0.0",
     "validator": "^13.12.0"
   }
