@@ -33,7 +33,7 @@
     "express": "4.19.2",
     "jest": "^29.7.0",
     "mocha": "^10.7.0",
-    "stripe": "^16.2.0",
+    "stripe": "^16.4.0",
     "supertest": "^7.0.0",
     "validator": "^13.12.0"
   }
