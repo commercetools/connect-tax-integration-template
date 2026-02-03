@@ -1,26 +1,21 @@
 import { createApiRoot } from '../clients/create.client.js';
-import { createChangedOrderSubscription } from './action.js';
+import { createSubscription } from './action.js';
 import { CTP_ORDER_CHANGE_SUBSCRIPTION_KEY } from '../constants/connectors.constants.js';
-const CONNECT_GCP_TOPIC_NAME_KEY = 'CONNECT_GCP_TOPIC_NAME';
-const CONNECT_GCP_PROJECT_ID_KEY = 'CONNECT_GCP_PROJECT_ID';
+import readConfiguration from '../utils/config.util.js';
 
-async function postDeploy(properties) {
-  const topicName = properties.get(CONNECT_GCP_TOPIC_NAME_KEY);
-  const projectId = properties.get(CONNECT_GCP_PROJECT_ID_KEY);
-
+async function postDeploy() {
+  const config = readConfiguration();
   const apiRoot = createApiRoot();
-  await createChangedOrderSubscription(
+  await createSubscription(
     apiRoot,
-    topicName,
-    projectId,
+    config,
     CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
   );
 }
 
 async function run() {
   try {
-    const properties = new Map(Object.entries(process.env));
-    await postDeploy(properties);
+    await postDeploy();
   } catch (error) {
     process.stderr.write(`Post-deploy failed: ${error.message}\n`);
     process.exitCode = 1;
