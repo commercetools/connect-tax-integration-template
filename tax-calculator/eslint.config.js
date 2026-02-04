@@ -1,10 +1,7 @@
-import js from '@eslint/js';
-
 export default [
   {
     ignores: ['node_modules/**', 'coverage/**', 'src/connectors/action.js'],
   },
-  js.configs.recommended,
   {
     languageOptions: {
       ecmaVersion: 2020,
