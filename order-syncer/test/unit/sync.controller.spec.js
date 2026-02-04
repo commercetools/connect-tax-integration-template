@@ -1,7 +1,7 @@
-import {expect, describe, it, jest} from '@jest/globals';
-import {HTTP_STATUS_SUCCESS_ACCEPTED} from '../../src/constants/http.status.constants.js';
-import {syncHandler} from "../../src/controllers/sync.controller.js";
-import readConfiguration from "../../src/utils/config.util.js";
+import { expect, describe, it, jest } from '@jest/globals';
+import { HTTP_STATUS_SUCCESS_ACCEPTED } from '../../src/constants/http.status.constants.js';
+import { syncHandler } from '../../src/controllers/sync.controller.js';
+import readConfiguration from '../../src/utils/config.util.js';
 import * as ConfigUtil from '../../src/utils/config.util.js';
 
 describe('sync.controller.spec', () => {
@@ -15,8 +15,8 @@ describe('sync.controller.spec', () => {
     };
 
     jest
-        .spyOn(ConfigUtil, "default")
-        .mockImplementation(({ success }) => success(dummyConfig));
+      .spyOn(ConfigUtil, 'default')
+      .mockImplementation(({ success }) => success(dummyConfig));
 
     const mockRequest = {
       method: 'POST',
@@ -33,9 +33,8 @@ describe('sync.controller.spec', () => {
       },
     };
 
-    const responseStatusSpy = jest.spyOn(mockResponse, 'status')
+    const responseStatusSpy = jest.spyOn(mockResponse, 'status');
     await syncHandler(mockRequest, mockResponse);
     expect(responseStatusSpy).toBeCalledWith(HTTP_STATUS_SUCCESS_ACCEPTED);
-
   });
 });

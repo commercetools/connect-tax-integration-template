@@ -1,7 +1,10 @@
 import { expect, describe, afterAll, it } from '@jest/globals';
 import request from 'supertest';
 import server from '../../src/index.js';
-import {HTTP_STATUS_BAD_REQUEST, HTTP_STATUS_SUCCESS_ACCEPTED} from '../../src/constants/http.status.constants.js';
+import {
+  HTTP_STATUS_BAD_REQUEST,
+  HTTP_STATUS_SUCCESS_ACCEPTED,
+} from '../../src/constants/http.status.constants.js';
 /** Reminder : Please put mandatory environment variables in the settings of your github repository **/
 describe('Test tax-calculator.controller.js', () => {
   it(`When resource identifier is absent in URL, it should return 404 http status`, async () => {

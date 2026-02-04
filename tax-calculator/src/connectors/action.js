@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { serializeError } from 'serialize-error';
 import { logger } from '../utils/logger.utils.js';
-import extensionTemplate from "./../../resources/api-extension.json" assert { type: 'json' };
+import extensionTemplate from './../../resources/api-extension.json' assert { type: 'json' };
 
 export async function createCTPExtension(
   apiRoot,
@@ -16,7 +16,9 @@ export async function createCTPExtension(
       })
     );
 
-    logger.info(`Connect tax-integration deployment service url: ${ctpExtensionBaseUrl} `)
+    logger.info(
+      `Connect tax-integration deployment service url: ${ctpExtensionBaseUrl} `
+    );
 
     const response = await fetchExtensionByKey(
       apiRoot,
@@ -24,30 +26,35 @@ export async function createCTPExtension(
     );
     const existingExtension = response?.results;
     if (existingExtension?.length) {
-      const updateActions = buildUpdateActions(existingExtension[0], extensionDraft);
+      const updateActions = buildUpdateActions(
+        existingExtension[0],
+        extensionDraft
+      );
       if (updateActions.length > 0) {
         await apiRoot
-            .extensions()
-            .withId({ ID: existingExtension[0].id })
-            .post({
-              body: {
-                actions: updateActions,
-                version: existingExtension[0].version,
-              },
-            })
-            .execute();
+          .extensions()
+          .withId({ ID: existingExtension[0].id })
+          .post({
+            body: {
+              actions: updateActions,
+              version: existingExtension[0].version,
+            },
+          })
+          .execute();
         logger.info(
-            'Successfully updated the API extension for payment resource type ' +
+          'Successfully updated the API extension for payment resource type ' +
             `key=${ctpTaxCalculatorExtensionKey}`
         );
       } else {
-        logger.info('No update actions found to update CTP Extension ' +
-            `key=${ctpTaxCalculatorExtensionKey}` );
+        logger.info(
+          'No update actions found to update CTP Extension ' +
+            `key=${ctpTaxCalculatorExtensionKey}`
+        );
       }
     } else {
-      await apiRoot.extensions().post({ body: extensionDraft}).execute();
+      await apiRoot.extensions().post({ body: extensionDraft }).execute();
       logger.info(
-          'Successfully created an API extension for payment resource type ' +
+        'Successfully created an API extension for payment resource type ' +
           `key=${ctpTaxCalculatorExtensionKey}`
       );
     }

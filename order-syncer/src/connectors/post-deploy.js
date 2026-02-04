@@ -6,11 +6,7 @@ import readConfiguration from '../utils/config.util.js';
 async function postDeploy() {
   const config = readConfiguration();
   const apiRoot = createApiRoot();
-  await createSubscription(
-    apiRoot,
-    config,
-    CTP_ORDER_CHANGE_SUBSCRIPTION_KEY
-  );
+  await createSubscription(apiRoot, config, CTP_ORDER_CHANGE_SUBSCRIPTION_KEY);
 }
 
 async function run() {
