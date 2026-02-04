@@ -9,6 +9,7 @@
     "start:dev": "nodemon -q src/index.js",
     "lint": "eslint src --ext .js",
     "prettier": "prettier --write '**/*.{js,ts}'",
+    "prettier:check": "prettier --check '**/*.{js,ts}'",
     "test": "npm run test:unit",
     "test:integration": "jest --config test/integration/jest.config.cjs",
     "test:unit": "jest --config test/unit/jest.config.cjs",
