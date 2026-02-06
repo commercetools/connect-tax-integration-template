@@ -38,7 +38,7 @@ function buildDestination(config) {
   );
 
   switch (config.connectSubscriptionDestination) {
-    case 'GCP':
+    case 'GoogleCloudPubSub':
       assertNonNullable(
         config.connectGcpTopicName,
         'CONNECT_GCP_TOPIC_NAME is required for GCP destination'
@@ -64,7 +64,7 @@ function buildDestination(config) {
       };
     default:
       throw new Error(
-        `Unsupported subscription destination: ${config.connectSubscriptionDestination}. Valid options are 'GCP' or 'SNS'.`
+        `Unsupported subscription destination: ${config.connectSubscriptionDestination}. Valid options are 'GoogleCloudPubSub' or 'SNS'.`
       );
   }
 }
