@@ -94,32 +94,3 @@ export async function createSubscription(
     })
     .execute();
 }
-
-export async function createChangedOrderSubscription(
-  apiRoot,
-  topicName,
-  projectId,
-  ctpOrderChangeSubscriptionKey
-) {
-  await deleteChangedOrderSubscription(apiRoot, ctpOrderChangeSubscriptionKey);
-
-  await apiRoot
-    .subscriptions()
-    .post({
-      body: {
-        key: ctpOrderChangeSubscriptionKey,
-        destination: {
-          type: 'GoogleCloudPubSub',
-          topic: topicName,
-          projectId,
-        },
-        messages: [
-          {
-            resourceTypeId: 'order',
-            types: MESSAGE_TYPE,
-          },
-        ],
-      },
-    })
-    .execute();
-}
